@@ -43,6 +43,11 @@
   .tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
   .ds-cell-mini{font-size:12px;color:#8a6d2f;word-break:break-all;max-width:150px}
   #view h2,#view .serif{font-size:20px}
+  .pr-pager{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:16px;font-size:13px;color:#8a8272}
+  .pr-info{margin-right:8px}
+  .pr-pager .btn{padding:5px 12px;font-size:12.5px}
+  .pr-pager .btn.on{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+  .pr-pager .btn[disabled]{opacity:.35;cursor:not-allowed}
 </style>
 </head>
 <body>
@@ -91,10 +96,11 @@
       <div class="tools">
         <h3 style="margin:0">產品型號管理</h3>
         <span style="flex:1"></span>
+        <input type="text" id="pr-q" placeholder="搜尋型號／參數…" oninput="PR_Q=this.value;PR_PAGE=1;renderProducts()" style="width:180px;padding:8px 10px;border:1px solid #e2d7bf;border-radius:4px;font-size:13px;margin-right:8px">
         <button class="btn btn-s" onclick="addRow()">＋ 新增型號</button>
         <button class="btn btn-g" onclick="saveProducts()">儲存全部</button>
       </div>
-      <p class="hint">每行對應產品頁表格的一行；「規格書」欄可為每個型號上傳 PDF（顯示在參考規格書欄的查看/下載按鈕）。</p>
+      <p class="hint">每行對應產品頁表格的一行；「規格書」欄可為每個型號上傳 PDF（顯示在參考規格書欄的查看/下載按鈕）。<b>修改後必須點「儲存全部」才會生效。</b></p>
       <div style="overflow-x:auto">
         <table class="adm" id="pr-table">
           <thead><tr>
@@ -103,6 +109,7 @@
           <tbody></tbody>
         </table>
       </div>
+      <div class="pr-pager" id="pr-pager"></div>
       <div class="msg" id="pr-msg"></div>
     </div>
 
@@ -214,7 +221,8 @@ function showView(btn){
 if (TOKEN) enter();
 
 /* ---------- inquiries ---------- */
-const CAT_ZH={led:'發光二極管',uv:'紫外 LED',cob:'COB 光源',ire:'紅外發射管',pt:'光電晶體',irr:'紅外接收頭',pd:'光電二極管',ld:'激光二極管',rgb:'RGB LED'};
+const CAT_ZH={led:'發光二極管',uv:'紫外 LED',cob:'COB 光源',ire:'紅外發射管',pt:'光電晶體',irr:'紅外接收頭',pd:'光電二極管',ld:'激光二極管',rgb:'RGB LED',tvs:'TVS / 靜電保護',seg:'LED 數碼管',psw:'槽型/反射式光電開關'};
+const CAT_LIST=['led','uv','cob','ire','pt','irr','pd','ld','rgb','tvs','seg','psw'];
 async function loadInquiries(){
   const box=document.getElementById('iq-list');
   try{
@@ -253,11 +261,22 @@ async function loadProducts(){
   }
   renderProducts();
 }
+const PR_PER=50;
+let PR_PAGE=1, PR_Q='';
+function prVisible(){
+  const q=PR_Q.toLowerCase();
+  return PRODUCTS.map((p,i)=>({p,i})).filter(o=>!q||Object.values(o.p).join(' ').toLowerCase().includes(q));
+}
 function renderProducts(){
   const tb=document.querySelector('#pr-table tbody');
-  tb.innerHTML=PRODUCTS.map((p,i)=>`
+  const list=prVisible();
+  const pages=Math.max(1,Math.ceil(list.length/PR_PER));
+  if(PR_PAGE>pages)PR_PAGE=pages;
+  if(PR_PAGE<1)PR_PAGE=1;
+  const view=list.slice((PR_PAGE-1)*PR_PER,PR_PAGE*PR_PER);
+  tb.innerHTML=view.map(({p,i})=>`
     <tr>
-      <td><select onchange="PRODUCTS[${i}].cat=this.value">${['led','uv','cob','ire','pt','irr','pd','ld','rgb'].map(c=>`<option value="${c}" ${p.cat===c?'selected':''}>${CAT_ZH[c]}</option>`).join('')}</select></td>
+      <td><select onchange="PRODUCTS[${i}].cat=this.value">${CAT_LIST.map(c=>`<option value="${c}" ${p.cat===c?'selected':''}>${CAT_ZH[c]}</option>`).join('')}</select></td>
       <td><input type="text" value="${esc(p.model)}" onchange="PRODUCTS[${i}].model=this.value" style="width:130px"></td>
       <td><input type="text" value="${esc(p.pkg)}" onchange="PRODUCTS[${i}].pkg=this.value" style="width:110px"></td>
       <td><input type="text" value="${esc(p.spec)}" onchange="PRODUCTS[${i}].spec=this.value" style="width:170px"></td>
@@ -267,10 +286,41 @@ function renderProducts(){
         <input type="file" accept="application/pdf" style="display:none" id="up-${i}" onchange="uploadDS(${i},this)">
         <button class="btn btn-s" style="padding:3px 10px;font-size:12px;margin-top:3px" onclick="document.getElementById('up-${i}').click()">上傳 PDF</button>
       </td>
-      <td><button class="btn btn-d" style="padding:3px 10px;font-size:12px" onclick="PRODUCTS.splice(${i},1);renderProducts()">刪</button></td>
+      <td><button class="btn btn-d" style="padding:3px 10px;font-size:12px" onclick="delRow(${i})">刪</button></td>
     </tr>`).join('');
+  renderPrPager(list.length,pages);
 }
-function addRow(){ PRODUCTS.push({cat:'led',model:'OKL-',pkg:'',spec:'',detail:'',ds:''}); renderProducts(); }
+function renderPrPager(total,pages){
+  const box=document.getElementById('pr-pager'); if(!box)return;
+  if(!total){box.innerHTML='';return;}
+  let h='<span class="pr-info">共 '+total+' 個型號 · 第 '+PR_PAGE+' / '+pages+' 頁</span>';
+  if(pages>1){
+    h+='<button class="btn btn-s" data-go="'+(PR_PAGE-1)+'"'+(PR_PAGE<=1?' disabled':'')+'>上一頁</button>';
+    let s=Math.max(1,PR_PAGE-2), e=Math.min(pages,s+4); s=Math.max(1,e-4);
+    for(let i=s;i<=e;i++)h+='<button class="btn btn-s'+(i===PR_PAGE?' on':'')+'" data-go="'+i+'">'+i+'</button>';
+    h+='<button class="btn btn-s" data-go="'+(PR_PAGE+1)+'"'+(PR_PAGE>=pages?' disabled':'')+'>下一頁</button>';
+  }
+  box.innerHTML=h;
+}
+function delRow(i){
+  PRODUCTS.splice(i,1);
+  renderProducts();
+  msg('pr-msg',true,'已刪除 1 個型號（記得點「儲存全部」）。');
+}
+function addRow(){
+  PRODUCTS.unshift({cat:'led',model:'',pkg:'',spec:'',detail:'',ds:''});
+  PR_Q=''; const q=document.getElementById('pr-q'); if(q)q.value='';
+  PR_PAGE=1; renderProducts();
+  const first=document.querySelector('#pr-table tbody input');
+  if(first){first.focus(); if(first.select)first.select();}
+  msg('pr-msg',true,'已新增 1 列（在第 1 頁第 1 行），填好後點「儲存全部」。');
+}
+document.getElementById('pr-pager').addEventListener('click',e=>{
+  const b=e.target.closest('button[data-go]'); if(!b||b.disabled)return;
+  const n=parseInt(b.dataset.go,10)||1;
+  if(n===PR_PAGE)return;
+  PR_PAGE=n; renderProducts();
+});
 function toBase64(buf){
   const bytes=new Uint8Array(buf); let bin='';
   const CH=0x8000;
