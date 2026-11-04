@@ -1,6 +1,7 @@
 # 本地开发文件，不发布到 GitHub Pages
 server.js
 tools/
+login-cloudflare.bat
 template-a-corporate.html
 template-b-tech.html
 template-c-premium.html
