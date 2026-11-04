@@ -134,6 +134,9 @@ footer h4{font-size:14px;margin-bottom:18px;letter-spacing:1px;text-transform:up
 footer a{display:block;color:var(--ink);font-size:14px;padding:6px 0}
 footer a:hover{color:var(--gold)}
 footer p{font-size:14px;color:var(--muted)}
+.flogo{display:inline-block}
+.flogo-mark{display:block;font-size:21px;font-weight:700;letter-spacing:1.6px;color:var(--blue);line-height:1.1}
+.flogo-legal{display:block;font-size:10px;letter-spacing:1.1px;color:var(--muted);margin-top:5px;font-weight:600}
 footer .copy{border-top:1px solid var(--line);margin-top:40px;padding-top:22px;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;letter-spacing:1px;flex-wrap:wrap;gap:8px}
 
 @media(max-width:900px){
