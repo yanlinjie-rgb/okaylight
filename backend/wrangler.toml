@@ -1,0 +1,29 @@
+# OKAYLIGHT API — Cloudflare Worker 配置
+# 部署：cd backend && npx wrangler deploy
+name = "okaylight-api"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+# ---- D1 数据库（免费 5GB，创建后把 database_id 填进来）----
+# npx wrangler d1 create okaylight
+[[d1_databases]]
+binding = "DB"
+database_name = "okaylight"
+database_id = "REPLACE_WITH_YOUR_D1_ID"
+
+# ---- R2 对象存储（可选，免费 10GB；开启需要在 Cloudflare 后台补账单信息）----
+# 不想绑卡就别解注释，Worker 会改用 GitHub 仓库存 PDF / 图片（见 DEPLOY.md 方案 B）
+# [[r2_buckets]]
+# binding = "BUCKET"
+# bucket_name = "okaylight-files"
+
+# ---- 普通变量（密钥不要写这里，用 wrangler secret put）----
+[vars]
+ALLOWED_ORIGINS = "https://www.okaylightled.com,https://okaylightled.com"
+SITE_HOST = "www.okaylightled.com"
+
+# ---- 给 Worker 绑定自定义子域名 ----
+# 前提：okaylightled.com 的 NS 已经指向 Cloudflare（同一账号下）
+# 新版 Wrangler 用 [[custom_domains]]，部署时自动在 Cloudflare 加这条域名记录
+[[custom_domains]]
+name = "api.okaylightled.com"

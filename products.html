@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products — OKAYLIGHT</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div data-i18n="topbar.left">Hong Kong · Global Optoelectronics Supplier</div>
+    <div class="lang">
+      <span data-i18n="lang.label">Lang</span>
+      <button data-l="en" class="active" onclick="setLang('en')">EN</button>
+      <button data-l="zh" onclick="setLang('zh')">繁中</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="index.html"><img src="logo.png" alt="OKAYLIGHT"></a>
+    <nav>
+      <a href="products.html" data-i18n="nav.products">Products</a>
+      <a href="why-us.html" data-i18n="nav.why">Why Us</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="news.html" data-i18n="nav.news">News</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <a class="cta" href="contact.html" data-i18n="nav.quote">Get a Quote</a>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="wrap">
+    <div class="kicker" data-i18n="pr.kicker">PRODUCT CATALOG</div>
+    <h1 class="serif" data-i18n="pr.h1">Products</h1>
+    <p data-i18n="pr.p">Nine product families, one parameter-driven catalog. Pick a category, search a model, or contact us for custom builds.</p>
+  </div>
+</div>
+
+<section style="padding-top:50px">
+  <div class="wrap">
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-cat="all" data-i18n="pr.all">All</button>
+      <button class="tab" data-cat="led" data-i18n="cat.led">LED</button>
+      <button class="tab" data-cat="uv" data-i18n="cat.uv">UV LED</button>
+      <button class="tab" data-cat="cob" data-i18n="cat.cob">COB Light Source</button>
+      <button class="tab" data-cat="ire" data-i18n="cat.ire">IR Emitter</button>
+      <button class="tab" data-cat="pt" data-i18n="cat.pt">Phototransistor</button>
+      <button class="tab" data-cat="irr" data-i18n="cat.irr">IR Receiver</button>
+      <button class="tab" data-cat="pd" data-i18n="cat.pd">Photodiode</button>
+      <button class="tab" data-cat="ld" data-i18n="cat.ld">Laser Diode</button>
+      <button class="tab" data-cat="rgb" data-i18n="cat.rgb">RGB LED</button>
+    </div>
+    <div class="searchbar">
+      <input type="text" id="q" data-i18n-ph="pr.search.ph" placeholder="Search model, wavelength or keyword…">
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr>
+            <th data-i18n="pr.th.model">Model</th>
+            <th data-i18n="pr.th.pkg">Package</th>
+            <th data-i18n="pr.th.c1">Key Spec</th>
+            <th data-i18n="pr.th.c2">Spec Detail</th>
+            <th class="th-ds" data-i18n="pr.th.ds">Datasheet</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <p class="cat-note" id="empty" style="display:none" data-i18n="pr.empty">No models match your search.</p>
+    <p class="cat-note" data-i18n="pr.note">Table shows representative models. Full stock list and datasheets available on request.</p>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="kicker" data-i18n="band.kick">GET IN TOUCH</div>
+    <h2 class="serif" data-i18n="band.h2">Need a Custom Optoelectronic Solution?</h2>
+    <p data-i18n="band.p">Send us your specification — our team responds within one business day.</p>
+    <a href="contact.html" data-i18n="band.btn">Contact Sales</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div>
+        <a class="logo" href="index.html" style="display:inline-block;margin-bottom:16px"><img src="logo.png" style="height:36px" alt="OKAYLIGHT"></a>
+        <p style="max-width:320px" data-i18n="foot.about">A Hong Kong-based optoelectronics supplier providing LEDs, UV/IR sources, photodetectors and laser diodes to manufacturers and distributors worldwide.</p>
+      </div>
+      <div><h4 data-i18n="foot.p">Products</h4>
+        <a href="products.html?cat=led" data-i18n="cat.led">LED</a>
+        <a href="products.html?cat=uv" data-i18n="cat.uv">UV LED</a>
+        <a href="products.html?cat=cob" data-i18n="cat.cob">COB Light Source</a>
+        <a href="products.html?cat=ld" data-i18n="cat.ld">Laser Diode</a></div>
+      <div><h4 data-i18n="foot.c">Company</h4>
+        <a href="about.html" data-i18n="nav.about">About</a>
+        <a href="why-us.html" data-i18n="nav.why">Why Us</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a></div>
+      <div><h4 data-i18n="foot.contact">Contact</h4>
+        <a href="mailto:sales@okaylightled.com">sales@okaylightled.com</a>
+        <a href="#" data-i18n="foot.addr">Hong Kong · Unit 8, Kwai Chung</a>
+        <a href="tel:+85230000000" data-i18n="foot.tel">Tel: +852 3000 0000</a></div>
+    </div>
+    <div class="copy">
+      <span>© 2026 OKAYLIGHT. <span data-i18n="foot.rights">All rights reserved.</span></span>
+      <span data-i18n="foot.lang">English / 繁體中文</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/config.js"></script>
+<script src="assets/i18n.js"></script>
+<script>
+/* Representative models — replaced by data/products.json when available
+   (that file is maintained from the admin backend) */
+const DEFAULT_DATA=[
+ ["led","OKL-3MM-RD","3mm (T-1)","Red · 620–625 nm","VF 2.0V · IV 800mcd @20mA · 60°","datasheets/OKL-3MM-RD.pdf"],
+ ["led","OKL-5MM-BL","5mm (T-1¾)","Blue · 465–470 nm","VF 3.2V · IV 3000mcd @20mA · 30°","datasheets/OKL-5MM-BL.pdf"],
+ ["led","OKL-0603-GN","0603 SMD","Green · 570–575 nm","VF 2.1V · IV 120mcd @20mA","datasheets/OKL-0603-GN.pdf"],
+ ["led","OKL-2835-WW","2835 SMD","Warm White · 3000K · CRI 80","VF 3.0V · 24lm @60mA","datasheets/OKL-2835-WW.pdf"],
+ ["led","OKL-5730-CW","5730 SMD","Cool White · 6500K · CRI 70","VF 3.2V · 55lm @150mA","datasheets/OKL-5730-CW.pdf"],
+ ["uv","OKU-365-3W","3535 SMD","UV-A · 365 nm","3W · 500mW radiant @700mA","datasheets/OKU-365-3W.pdf"],
+ ["uv","OKU-395-1W","3535 SMD","UV-A · 395–400 nm","1W · 300mW radiant @350mA","datasheets/OKU-395-1W.pdf"],
+ ["uv","OKU-405-5MM","5mm (T-1¾)","UV-A · 405 nm","VF 3.4V · 10mW @20mA","datasheets/OKU-405-5MM.pdf"],
+ ["cob","OKC-50W-WW","50W COB array","Warm White · 3000K · CRI 80","36V · 5000lm · Ø50mm","datasheets/OKC-50W-WW.pdf"],
+ ["cob","OKC-100W-CW","100W COB array","Cool White · 6500K · CRI 70","36V · 10000lm · Ø65mm","datasheets/OKC-100W-CW.pdf"],
+ ["cob","OKC-30W-BB","30W COB array","Blue · 450 nm · grow-light","30V · 900mW radiant","datasheets/OKC-30W-BB.pdf"],
+ ["ire","OKI-850-5MM","5mm (T-1¾)","IR · 850 nm","VF 1.5V · 30mW/sr @100mA · 20°","datasheets/OKI-850-5MM.pdf"],
+ ["ire","OKI-940-3MM","3mm (T-1)","IR · 940 nm","VF 1.4V · 12mW/sr @100mA","datasheets/OKI-940-3MM.pdf"],
+ ["ire","OKI-850-2835","2835 SMD","IR · 850 nm","VF 1.5V · 60mW/sr · 120°","datasheets/OKI-850-2835.pdf"],
+ ["pt","OKP-850-5MM","5mm (T-1¾)","NPN · peak 850 nm","VCEO 30V · IC 5mA · with/without lens","datasheets/OKP-850-5MM.pdf"],
+ ["pt","OKP-940-3MM","3mm (T-1)","NPN · peak 940 nm","VCEO 30V · IC 3mA","datasheets/OKP-940-3MM.pdf"],
+ ["pt","OKP-850-SMD","1206 SMD","NPN · peak 850 nm","VCEO 30V · side-view option","datasheets/OKP-850-SMD.pdf"],
+ ["irr","OKR-38K-5MM","5mm module","38kHz · 940nm receiver","2.7–5.5V · TTL output","datasheets/OKR-38K-5MM.pdf"],
+ ["irr","OKR-38K-MINI","Mini epoxy","38kHz · 940nm receiver","2.7–5.5V · 45m range","datasheets/OKR-38K-MINI.pdf"],
+ ["irr","OKR-36K-SMD","SMD shielded","36kHz · 940nm receiver","2.7–5.5V · anti-interference","datasheets/OKR-36K-SMD.pdf"],
+ ["pd","OKD-850-SMD","1206 SMD","Peak 850 nm","Dark current 5nA · rise time 20ns","datasheets/OKD-850-SMD.pdf"],
+ ["pd","OKD-PIN-5MM","5mm (T-1)","PIN · 400–1100 nm","VR 30V · 0.55A/W @850nm","datasheets/OKD-PIN-5MM.pdf"],
+ ["pd","OKD-940-SMD","0805 SMD","Peak 940 nm","Dark current 1nA · fast response","datasheets/OKD-940-SMD.pdf"],
+ ["ld","OKL-650-5MW","TO-18 · 5.6mm","Red · 650 nm · 5mW","Single mode · Class IIIa","datasheets/OKL-650-5MW.pdf"],
+ ["ld","OKL-780-10MW","TO-18 · 5.6mm","IR · 780 nm · 10mW","CD/DVD pickup · sensing","datasheets/OKL-780-10MW.pdf"],
+ ["ld","OKL-405-20MW","TO-38 · 5.6mm","Violet · 405 nm · 20mW","Blue-ray / optical disc","datasheets/OKL-405-20MW.pdf"],
+ ["rgb","OKG-5050-RGB","5050 SMD","Common anode · 4-pin","20mA/channel · 620/525/470nm","datasheets/OKG-5050-RGB.pdf"],
+ ["rgb","OKG-WS2812","5050 SMD","Addressable · built-in IC","800kbps · 5V single-wire","datasheets/OKG-WS2812.pdf"],
+ ["rgb","OKG-5MM-RGB","5mm diffused","Common cathode · 4-pin","20mA/channel · diffused lens","datasheets/OKG-5MM-RGB.pdf"]
+];
+let DATA=DEFAULT_DATA;
+let CAT='all';
+function t(k){const d=I18N[getLang()]||I18N.en;return d[k]!==undefined?d[k]:I18N.en[k];}
+function render(){
+  const q=(document.getElementById('q').value||'').toLowerCase();
+  const tb=document.getElementById('tbody');
+  const rows=DATA.filter(r=>(CAT==='all'||r.cat===CAT)&&(!q||Object.values(r).join(' ').toLowerCase().includes(q)));
+  tb.innerHTML=rows.map(r=>{
+    const ds=r.ds?'<div class="ds-cell">'
+      +'<a class="ds-btn" href="'+r.ds+'" target="_blank" title="'+t('pr.ds.view')+'">'
+      +'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>'
+      +t('pr.ds.view')+'</a>'
+      +'<a class="ds-btn ds-dl" href="'+r.ds+'" download title="'+t('pr.ds.download')+'">'
+      +'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="3" x2="12" y2="15"/></svg>'
+      +t('pr.ds.download')+'</a></div>'
+      :'<span style="color:#b9ac96">'+t('pr.ds.none')+'</span>';
+    return '<tr><td class="model">'+r.model+'</td><td>'+r.pkg+'</td><td>'+r.spec+'</td><td>'+r.detail+'</td><td class="td-ds">'+ds+'</td></tr>';
+  }).join('');
+  document.getElementById('empty').style.display=rows.length?'none':'block';
+}
+document.getElementById('tabs').addEventListener('click',e=>{
+  const b=e.target.closest('.tab');if(!b)return;
+  CAT=b.dataset.cat;
+  document.querySelectorAll('.tab').forEach(t2=>t2.classList.toggle('active',t2===b));
+  render();
+});
+document.getElementById('q').addEventListener('input',render);
+document.addEventListener('okaylang',render);
+/* Load backend-managed catalogue.
+   1) Cloudflare Worker（线上）/ 本地 node server   2) 静态 data/products.json 兜底 */
+fetch(OKAY.url('/api/products')).then(r=>r.ok?r.json():null).then(j=>{
+  if(Array.isArray(j)&&j.length){DATA=j;render();}
+  else throw new Error('empty');
+}).catch(()=>fetch('data/products.json').then(r=>r.ok?r.json():null).then(j=>{
+  if(Array.isArray(j)&&j.length){DATA=j;render();}
+}).catch(()=>{}));
+(function(){
+  const p=new URLSearchParams(location.search).get('cat');
+  if(p&&document.querySelector('.tab[data-cat="'+p+'"]'))document.querySelector('.tab[data-cat="'+p+'"]').click();
+  else render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News — OKAYLIGHT</title>
+<meta name="description" content="Product launches, application notes and company updates from OKAYLIGHT.">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .news-list{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  .ncard{border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff;padding:26px 26px 30px;display:flex;flex-direction:column;transition:.25s}
+  .ncard:hover{background:var(--cream)}
+  .ncard .cover{width:100%;height:150px;object-fit:cover;margin-bottom:18px;border:1px solid var(--line);background:var(--cream)}
+  .ncard .date{font-size:12px;letter-spacing:1.5px;color:var(--gold);margin-bottom:8px;text-transform:uppercase}
+  .ncard h3{font-size:19px;font-weight:600;line-height:1.35;margin-bottom:10px}
+  .ncard p{font-size:14px;color:var(--muted);flex:1}
+  .ncard .more{margin-top:16px;font-size:13px;letter-spacing:1px;color:var(--ink);border-bottom:1px solid var(--gold);align-self:flex-start;padding-bottom:2px}
+  .article{max-width:760px}
+  .article .meta{font-size:13px;color:var(--muted);letter-spacing:1px;margin-bottom:26px;border:none;padding:0;margin-top:8px}
+  .article h1{font-size:40px;font-weight:400;line-height:1.2;letter-spacing:-.5px}
+  .article .cover{width:100%;max-height:380px;object-fit:cover;margin:26px 0;border:1px solid var(--line)}
+  .article p{font-size:16px;line-height:1.85;color:#333;margin-bottom:18px}
+  .backlink{display:inline-block;margin-bottom:26px;font-size:13px;letter-spacing:1px;color:var(--gold);border-bottom:1px solid var(--gold);padding-bottom:2px}
+  @media(max-width:900px){.news-list{grid-template-columns:1fr}.article h1{font-size:30px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div data-i18n="topbar.left">Hong Kong · Global Optoelectronics Supplier</div>
+    <div class="lang">
+      <span data-i18n="lang.label">Lang</span>
+      <button data-l="en" class="active" onclick="setLang('en')">EN</button>
+      <button data-l="zh" onclick="setLang('zh')">繁中</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="index.html"><img src="logo.png" alt="OKAYLIGHT"></a>
+    <nav>
+      <a href="products.html" data-i18n="nav.products">Products</a>
+      <a href="why-us.html" data-i18n="nav.why">Why Us</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="news.html" class="active" data-i18n="nav.news">News</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <a class="cta" href="contact.html" data-i18n="nav.quote">Get a Quote</a>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="kicker" data-i18n="news.kick">NEWSROOM</div>
+    <h1 class="serif" data-i18n="news.h1">News &amp; Technical Notes</h1>
+    <p data-i18n="news.p">Product launches, application notes and company updates from the OKAYLIGHT team.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div id="view-list"><p style="color:var(--muted)" data-i18n="news.empty">No articles published yet. Please check back soon.</p></div>
+    <div id="view-detail" class="article" style="display:none"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div>
+        <a class="logo" href="index.html" style="display:inline-block;margin-bottom:16px"><img src="logo.png" style="height:36px" alt="OKAYLIGHT"></a>
+        <p style="max-width:320px" data-i18n="foot.about">A Hong Kong-based optoelectronics supplier providing LEDs, UV/IR sources, photodetectors and laser diodes to manufacturers and distributors worldwide.</p>
+      </div>
+      <div><h4 data-i18n="foot.p">Products</h4>
+        <a href="products.html?cat=led" data-i18n="cat.led">LED</a>
+        <a href="products.html?cat=uv" data-i18n="cat.uv">UV LED</a>
+        <a href="products.html?cat=cob" data-i18n="cat.cob">COB Light Source</a>
+        <a href="products.html?cat=ld" data-i18n="cat.ld">Laser Diode</a></div>
+      <div><h4 data-i18n="foot.c">Company</h4>
+        <a href="about.html" data-i18n="nav.about">About</a>
+        <a href="why-us.html" data-i18n="nav.why">Why Us</a>
+        <a href="news.html" data-i18n="nav.news">News</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a></div>
+      <div><h4 data-i18n="foot.contact">Contact</h4>
+        <a href="mailto:sales@okaylightled.com">sales@okaylightled.com</a>
+        <a href="#" data-i18n="foot.addr">Hong Kong · Unit 8, Kwai Chung</a>
+        <a href="tel:+85230000000" data-i18n="foot.tel">Tel: +852 3000 0000</a></div>
+    </div>
+    <div class="copy">
+      <span>© 2026 OKAYLIGHT. <span data-i18n="foot.rights">All rights reserved.</span></span>
+      <span data-i18n="foot.lang">English / 繁體中文</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/config.js"></script>
+<script src="assets/i18n.js"></script>
+<script>
+(function(){
+  var ALL=[];
+  function t(k){var d=I18N[getLang()]||I18N.en;return d[k]!==undefined?d[k]:I18N.en[k];}
+  function pick(a,f){var v=a[f+'_'+getLang()];return (v&&v.trim())?v:(a[f+'_en']||a[f+'_zh']||'');}
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function date(s){try{return new Date(s).toLocaleDateString(getLang()==='zh'?'zh-Hant':'en-GB',{year:'numeric',month:'short',day:'numeric'});}catch(e){return '';}}
+
+  function renderList(){
+    var box=document.getElementById('view-list');
+    document.getElementById('view-detail').style.display='none';
+    box.style.display='block';
+    if(!ALL.length){
+      box.innerHTML='<p style="color:var(--muted)">'+esc(t('news.empty'))+'</p>';
+      return;
+    }
+    box.innerHTML='<div class="news-list">'+ALL.map(function(a){
+      var title=pick(a,'title'), ex=pick(a,'excerpt');
+      var cover=a.cover?'<img class="cover" src="'+esc(a.cover)+'" alt="">':'';
+      return '<a class="ncard" href="?slug='+encodeURIComponent(a.slug||a.id)+'">'+cover
+        +'<div class="date">'+esc(date(a.ts))+'</div>'
+        +'<h3>'+esc(title)+'</h3>'
+        +'<p>'+esc(ex)+'</p>'
+        +'<span class="more">'+esc(t('news.read'))+' →</span></a>';
+    }).join('')+'</div>';
+  }
+
+  function renderDetail(slug){
+    var a=ALL.filter(function(x){return (x.slug||x.id)===slug;})[0];
+    if(!a){ renderList(); return; }
+    var box=document.getElementById('view-list');
+    var det=document.getElementById('view-detail');
+    box.style.display='none'; det.style.display='block';
+    var body=pick(a,'body')||'';
+    var paras=body.split(/\n\s*\n/).map(function(p){return '<p>'+esc(p).replace(/\n/g,'<br>')+'</p>';}).join('');
+    det.innerHTML='<a class="backlink" href="news.html">'+esc(t('news.back'))+'</a>'
+      +'<h1 class="serif">'+esc(pick(a,'title'))+'</h1>'
+      +'<div class="meta">'+esc(date(a.ts))+(a.updated?' · '+esc(t('news.updated'))+' '+esc(date(a.updated)):'')+'</div>'
+      +(a.cover?'<img class="cover" src="'+esc(a.cover)+'" alt="">':'')
+      +paras;
+    document.title=pick(a,'title')+' — OKAYLIGHT';
+  }
+
+  function paint(){
+    var slug=new URLSearchParams(location.search).get('slug');
+    if(slug) renderDetail(slug); else renderList();
+  }
+
+  fetch(OKAY.url('/api/articles')).then(function(r){return r.ok?r.json():null;}).then(function(j){
+    if(Array.isArray(j)) ALL=j;
+    paint();
+  }).catch(function(){ paint(); });
+
+  document.addEventListener('okaylang', paint);
+})();
+</script>
+</body>
+</html>

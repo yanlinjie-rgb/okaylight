@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>後台管理 — OKAYLIGHT</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  body{background:#f6f4ef}
+  .adm-wrap{max-width:1080px;margin:0 auto;padding:30px 20px 80px}
+  .adm-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px}
+  .adm-head h1{font-size:24px;font-weight:500}
+  .adm-badge{font-size:12px;letter-spacing:.12em;color:#8a6d2f;border:1px solid #e2d7bf;background:#fffdf7;border-radius:999px;padding:5px 14px}
+  .card{background:#fff;border:1px solid #e8e3d8;border-radius:8px;padding:24px;box-shadow:0 1px 3px rgba(60,50,30,.05);margin-bottom:22px}
+  .card h3{font-size:16px;margin-bottom:14px;font-weight:600}
+  .tabs2{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap}
+  .tabs2 button{padding:10px 20px;border:1px solid #ddd5c4;background:#fff;border-radius:6px;font-size:14px;cursor:pointer}
+  .tabs2 button.on{background:#1d1a14;color:#fff;border-color:#1d1a14}
+  .btn{padding:9px 20px;border:none;border-radius:5px;cursor:pointer;font-size:14px}
+  .btn-g{background:#b08d3e;color:#fff}.btn-g:hover{background:#96762f}
+  .btn-s{background:#eee9de;color:#4a4436}.btn-s:hover{background:#e0d9c8}
+  .btn-d{background:#fbeaea;color:#a33}.btn-d:hover{background:#f3d3d3}
+  .btn:disabled{opacity:.5;cursor:default}
+  input[type=text],input[type=password],input[type=email],select,textarea{width:100%;box-sizing:border-box;padding:9px 12px;border:1px solid #ddd5c4;border-radius:5px;font-size:14px;background:#fff}
+  textarea{resize:vertical;min-height:70px}
+  label.fl{display:block;font-size:13px;color:#6b6455;margin:12px 0 5px}
+  .row{display:flex;gap:14px}.row>div{flex:1}
+  table.adm{width:100%;border-collapse:collapse;font-size:13.5px}
+  table.adm th{text-align:left;padding:9px 8px;border-bottom:2px solid #e5dfcf;color:#6b6455;font-weight:600;white-space:nowrap}
+  table.adm td{padding:7px 8px;border-bottom:1px solid #f0ece2;vertical-align:middle}
+  table.adm input[type=text],table.adm select{padding:6px 8px;font-size:13px}
+  .status{padding:3px 10px;border-radius:999px;font-size:12px;display:inline-block}
+  .st-new{background:#fff3d6;color:#8a6d2f;font-weight:600}
+  .st-read{background:#f0efe9;color:#999}
+  .iq-msg{white-space:pre-wrap;color:#333;margin-top:6px;line-height:1.5}
+  .iq-item{border-bottom:1px solid #f0ece2;padding:12px 4px}
+  .msg{margin-top:12px;font-size:13.5px;padding:9px 14px;border-radius:5px;display:none}
+  .msg.ok{display:block;background:#eef7ee;color:#2e7d32}
+  .msg.err{display:block;background:#fbeaea;color:#a33}
+  .login-box{max-width:400px;margin:80px auto}
+  .hint{font-size:12.5px;color:#999;margin-top:10px}
+  .tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+  .ds-cell-mini{font-size:12px;color:#8a6d2f;word-break:break-all;max-width:150px}
+  #view h2,#view .serif{font-size:20px}
+</style>
+</head>
+<body>
+
+<div class="adm-wrap">
+  <div class="adm-head">
+    <h1>OKAYLIGHT <span style="font-weight:300">後台管理</span></h1>
+    <span class="adm-badge" id="state-chip">未登入</span>
+  </div>
+
+  <!-- ============ 登录 ============ -->
+  <div id="login" class="card login-box">
+    <h3>管理員登入</h3>
+    <label class="fl">密碼</label>
+    <input type="password" id="pw" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="btn btn-g" style="margin-top:16px;width:100%" onclick="doLogin()">登 入</button>
+    <div class="msg" id="login-msg"></div>
+    <p class="hint">預設密碼：okaylight2026（登入後請在「設置」中修改）</p>
+  </div>
+
+  <!-- ============ 主面板 ============ -->
+  <div id="panel" style="display:none">
+    <div class="tabs2">
+      <button class="on" data-v="view-iq" onclick="showView(this)">詢價收件箱</button>
+      <button data-v="view-pr" onclick="showView(this)">產品管理</button>
+      <button data-v="view-nw" onclick="showView(this)">文章管理</button>
+      <button data-v="view-ct" onclick="showView(this)">頁面裝修</button>
+      <button data-v="view-st" onclick="showView(this)">設置</button>
+      <span style="flex:1"></span>
+      <button onclick="location.href='index.html'" style="border-color:#b08d3e;color:#8a6d2f">← 返回網站</button>
+    </div>
+
+    <!-- 询价 -->
+    <div id="view-iq" class="card">
+      <div class="tools">
+        <h3 style="margin:0">詢價內容</h3>
+        <span style="flex:1"></span>
+        <button class="btn btn-s" onclick="loadInquiries()">刷新</button>
+      </div>
+      <div id="iq-list">載入中…</div>
+      <div class="msg" id="iq-msg"></div>
+    </div>
+
+    <!-- 产品 -->
+    <div id="view-pr" style="display:none" class="card">
+      <div class="tools">
+        <h3 style="margin:0">產品型號管理</h3>
+        <span style="flex:1"></span>
+        <button class="btn btn-s" onclick="addRow()">＋ 新增型號</button>
+        <button class="btn btn-g" onclick="saveProducts()">儲存全部</button>
+      </div>
+      <p class="hint">每行對應產品頁表格的一行；「規格書」欄可為每個型號上傳 PDF（顯示在參考規格書欄的查看/下載按鈕）。</p>
+      <div style="overflow-x:auto">
+        <table class="adm" id="pr-table">
+          <thead><tr>
+            <th>分類</th><th>型號</th><th>封裝</th><th>關鍵參數</th><th>參數細節</th><th>規格書</th><th></th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="msg" id="pr-msg"></div>
+    </div>
+
+    <!-- 文章 -->
+    <div id="view-nw" style="display:none" class="card">
+      <div class="tools">
+        <h3 style="margin:0">文章 / 新聞</h3>
+        <span style="flex:1"></span>
+        <button class="btn btn-s" onclick="loadArticles()">重新載入</button>
+        <button class="btn btn-g" onclick="newArticle()">＋ 新增文章</button>
+      </div>
+      <p class="hint">前台「News」頁展示已發佈的文章；同一篇文章可分別填英文與繁中版本，訪客切換語言時自動對應。</p>
+      <div id="nw-list">載入中…</div>
+
+      <div id="nw-editor" style="display:none;border-top:2px solid #eee5d3;margin-top:18px;padding-top:18px">
+        <div class="row">
+          <div><label class="fl">英文標題</label><input type="text" id="nw-title-en"></div>
+          <div><label class="fl">繁中標題</label><input type="text" id="nw-title-zh"></div>
+        </div>
+        <div class="row">
+          <div><label class="fl">Slug（網址用，留空自動生成）</label><input type="text" id="nw-slug" placeholder="e.g. new-uv-led-series"></div>
+          <div><label class="fl">狀態</label>
+            <select id="nw-state"><option value="draft">草稿</option><option value="published">已發佈</option></select>
+          </div>
+        </div>
+        <div class="row">
+          <div><label class="fl">英文摘要</label><textarea id="nw-ex-en" style="min-height:60px"></textarea></div>
+          <div><label class="fl">繁中摘要</label><textarea id="nw-ex-zh" style="min-height:60px"></textarea></div>
+        </div>
+        <div class="row">
+          <div><label class="fl">英文正文（空行分段）</label><textarea id="nw-body-en" style="min-height:160px"></textarea></div>
+          <div><label class="fl">繁中正文（空行分段）</label><textarea id="nw-body-zh" style="min-height:160px"></textarea></div>
+        </div>
+        <label class="fl">封面圖網址</label>
+        <input type="text" id="nw-cover" placeholder="https://... 或上傳圖片">
+        <div style="margin-top:8px">
+          <input type="file" accept="image/*,application/pdf" style="display:none" id="nw-file" onchange="uploadNewsFile(this)">
+          <button class="btn btn-s" onclick="document.getElementById('nw-file').click()">上傳圖片</button>
+          <button class="btn btn-g" style="margin-left:8px" onclick="saveArticle()">儲存文章</button>
+          <button class="btn btn-s" style="margin-left:8px" onclick="document.getElementById('nw-editor').style.display='none'">取消</button>
+        </div>
+        <div class="msg" id="nw-msg"></div>
+      </div>
+    </div>
+
+    <!-- 装修 -->
+    <div id="view-ct" style="display:none" class="card">
+      <div class="tools">
+        <h3 style="margin:0">頁面內容裝修</h3>
+        <span style="flex:1"></span>
+        <button class="btn btn-s" onclick="loadContent()">還原當前</button>
+        <button class="btn btn-g" onclick="saveContent()">儲存並發佈</button>
+      </div>
+      <p class="hint">修改後點「儲存並發佈」，前台頁面立即生效（訪客刷新即可看到）。每個欄位分英文 / 繁中兩套。</p>
+      <div id="ct-fields"></div>
+      <div class="msg" id="ct-msg"></div>
+    </div>
+
+    <!-- 设置 -->
+    <div id="view-st" style="display:none" class="card" style="max-width:520px">
+      <h3>修改管理密碼</h3>
+      <label class="fl">目前密碼</label>
+      <input type="password" id="pw-old">
+      <label class="fl">新密碼（至少 6 位）</label>
+      <input type="password" id="pw-new">
+      <button class="btn btn-g" style="margin-top:16px" onclick="changePw()">更新密碼</button>
+      <div class="msg" id="st-msg"></div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/config.js"></script>
+<script>
+"use strict";
+let TOKEN = sessionStorage.getItem('okay_admin_token') || '';
+
+function api(path, opts) {
+  opts = opts || {};
+  opts.headers = Object.assign({'Content-Type':'application/json'},
+    TOKEN ? {'Authorization':'Bearer '+TOKEN} : {});
+  return fetch(OKAY.url(path), opts).then(async r => {
+    const j = await r.json().catch(()=>({}));
+    if (!r.ok) throw new Error(j.error || ('HTTP '+r.status));
+    return j;
+  });
+}
+function msg(id, ok, text){ const m=document.getElementById(id); m.className='msg '+(ok?'ok':'err'); m.textContent=text; }
+
+/* ---------- login ---------- */
+async function doLogin(){
+  try{
+    const j = await api('/api/login',{method:'POST',body:JSON.stringify({password:document.getElementById('pw').value})});
+    TOKEN = j.token; sessionStorage.setItem('okay_admin_token',TOKEN);
+    enter();
+  }catch(e){
+    const m=document.getElementById('login-msg'); m.className='msg err'; m.textContent='密碼錯誤，請重試。';
+  }
+}
+function enter(){
+  document.getElementById('login').style.display='none';
+  document.getElementById('panel').style.display='block';
+  document.getElementById('state-chip').textContent='已登入';
+  loadInquiries(); loadProducts(); loadArticles(); loadContent();
+}
+function showView(btn){
+  document.querySelectorAll('.tabs2 button[data-v]').forEach(b=>b.classList.toggle('on',b===btn));
+  ['view-iq','view-pr','view-nw','view-ct','view-st'].forEach(v=>document.getElementById(v).style.display=(v===btn.dataset.v?'block':'none'));
+}
+if (TOKEN) enter();
+
+/* ---------- inquiries ---------- */
+const CAT_ZH={led:'發光二極管',uv:'紫外 LED',cob:'COB 光源',ire:'紅外發射管',pt:'光電晶體',irr:'紅外接收頭',pd:'光電二極管',ld:'激光二極管',rgb:'RGB LED'};
+async function loadInquiries(){
+  const box=document.getElementById('iq-list');
+  try{
+    const list=await api('/api/inquiries');
+    if(!list.length){box.innerHTML='<p class="hint" style="padding:16px 0">暫無詢價。客戶在「聯絡」頁提交的詢價會即時出現在這裡。</p>';return;}
+    box.innerHTML=list.map(i=>`
+      <div class="iq-item">
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <span class="status ${i.read?'st-read':'st-new'}">${i.read?'已讀':'新詢價'}</span>
+          <b>${esc(i.name)}</b>${i.company?' · '+esc(i.company):''}
+          <span style="color:#8a6d2f">${esc(i.email)}</span>
+          ${i.interest?'<span style="background:#f4f1e8;border-radius:4px;padding:2px 8px;font-size:12px">'+esc(i.interest)+'</span>':''}
+          <span style="color:#999;font-size:12px">${new Date(i.ts).toLocaleString('zh-Hant')}</span>
+          <span style="flex:1"></span>
+          <button class="btn btn-s" style="padding:4px 12px;font-size:12px" onclick="iqUpdate('${i.id}',${i.read?'unread':'read'})">${i.read?'標為未讀':'標為已讀'}</button>
+          <button class="btn btn-d" style="padding:4px 12px;font-size:12px" onclick="iqUpdate('${i.id}','delete')">刪除</button>
+        </div>
+        <div class="iq-msg">${esc(i.msg)}</div>
+      </div>`).join('');
+  }catch(e){ box.innerHTML='<p class="hint">載入失敗：'+esc(e.message)+'</p>'; }
+}
+async function iqUpdate(id,action){
+  try{ await api('/api/inquiries/update',{method:'POST',body:JSON.stringify({id,action})}); loadInquiries(); }
+  catch(e){ msg('iq-msg',false,'操作失敗：'+e.message); }
+}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+/* ---------- products ---------- */
+let PRODUCTS=[];
+async function loadProducts(){
+  try{
+    PRODUCTS=await api('/api/products');
+    if(!Array.isArray(PRODUCTS)) throw new Error('bad payload');
+  }catch(e){
+    try{ PRODUCTS=await (await fetch('data/products.json')).json(); }catch(e2){ PRODUCTS=[]; }
+  }
+  renderProducts();
+}
+function renderProducts(){
+  const tb=document.querySelector('#pr-table tbody');
+  tb.innerHTML=PRODUCTS.map((p,i)=>`
+    <tr>
+      <td><select onchange="PRODUCTS[${i}].cat=this.value">${['led','uv','cob','ire','pt','irr','pd','ld','rgb'].map(c=>`<option value="${c}" ${p.cat===c?'selected':''}>${CAT_ZH[c]}</option>`).join('')}</select></td>
+      <td><input type="text" value="${esc(p.model)}" onchange="PRODUCTS[${i}].model=this.value" style="width:130px"></td>
+      <td><input type="text" value="${esc(p.pkg)}" onchange="PRODUCTS[${i}].pkg=this.value" style="width:110px"></td>
+      <td><input type="text" value="${esc(p.spec)}" onchange="PRODUCTS[${i}].spec=this.value" style="width:170px"></td>
+      <td><input type="text" value="${esc(p.detail)}" onchange="PRODUCTS[${i}].detail=this.value" style="width:200px"></td>
+      <td>
+        <div class="ds-cell-mini">${esc(p.ds||'未設定')}</div>
+        <input type="file" accept="application/pdf" style="display:none" id="up-${i}" onchange="uploadDS(${i},this)">
+        <button class="btn btn-s" style="padding:3px 10px;font-size:12px;margin-top:3px" onclick="document.getElementById('up-${i}').click()">上傳 PDF</button>
+      </td>
+      <td><button class="btn btn-d" style="padding:3px 10px;font-size:12px" onclick="PRODUCTS.splice(${i},1);renderProducts()">刪</button></td>
+    </tr>`).join('');
+}
+function addRow(){ PRODUCTS.push({cat:'led',model:'OKL-',pkg:'',spec:'',detail:'',ds:''}); renderProducts(); }
+function toBase64(buf){
+  const bytes=new Uint8Array(buf); let bin='';
+  const CH=0x8000;
+  for(let i=0;i<bytes.length;i+=CH) bin+=String.fromCharCode.apply(null,bytes.subarray(i,i+CH));
+  return btoa(bin);
+}
+async function uploadFile(f){
+  if(f.size>10*1024*1024) throw new Error('檔案超過 10MB');
+  const b64=toBase64(await f.arrayBuffer());
+  return await api('/api/upload',{method:'POST',body:JSON.stringify({name:f.name,data:b64})});
+}
+async function uploadDS(i,input){
+  const f=input.files[0]; if(!f)return;
+  try{
+    const j=await uploadFile(f);
+    PRODUCTS[i].ds=j.url; renderProducts();
+    msg('pr-msg',true,'規格書已上傳：'+j.url);
+  }catch(e){ msg('pr-msg',false,'上傳失敗：'+e.message); }
+  input.value='';
+}
+async function saveProducts(){
+  try{
+    const j=await api('/api/products/save',{method:'POST',body:JSON.stringify({list:PRODUCTS})});
+    msg('pr-msg',true,'已儲存 '+j.count+' 個型號，產品頁刷新即見。');
+  }catch(e){ msg('pr-msg',false,'儲存失敗：'+e.message); }
+}
+
+/* ---------- articles ---------- */
+let ARTICLES=[], EDIT_ID=null;
+async function loadArticles(){
+  const box=document.getElementById('nw-list');
+  try{
+    ARTICLES=await api('/api/articles?all=1');
+  }catch(e){ ARTICLES=[]; }
+  if(!ARTICLES.length){ box.innerHTML='<p class="hint" style="padding:10px 0">還沒有文章。點右上角「新增文章」開始。</p>'; return; }
+  box.innerHTML='<table class="adm"><thead><tr><th>狀態</th><th>標題</th><th>網址 slug</th><th>更新時間</th><th></th></tr></thead><tbody>'
+    + ARTICLES.map(a=>`<tr>
+        <td><span class="status ${a.state==='published'?'st-new':'st-read'}">${a.state==='published'?'已發佈':'草稿'}</span></td>
+        <td><b>${esc(a.title_zh||a.title_en||'(無標題)')}</b><div style="color:#999;font-size:12px">${esc(a.title_en||'')}</div></td>
+        <td style="color:#8a6d2f;font-size:12px">${esc(a.slug||'')}</td>
+        <td style="font-size:12px;color:#999">${esc((a.updated||a.ts||'').slice(0,16).replace('T',' '))}</td>
+        <td style="white-space:nowrap">
+          <button class="btn btn-s" style="padding:3px 10px;font-size:12px" onclick="editArticle('${a.id}')">編輯</button>
+          <button class="btn btn-d" style="padding:3px 10px;font-size:12px" onclick="delArticle('${a.id}')">刪除</button>
+        </td></tr>`).join('')+'</tbody></table>';
+}
+function newArticle(){
+  EDIT_ID=null;
+  ['title-en','title-zh','slug','ex-en','ex-zh','body-en','body-zh','cover'].forEach(k=>document.getElementById('nw-'+k).value='');
+  document.getElementById('nw-state').value='draft';
+  document.getElementById('nw-editor').style.display='block';
+}
+function editArticle(id){
+  const a=ARTICLES.find(x=>x.id===id); if(!a)return;
+  EDIT_ID=id;
+  const set=(k,v)=>{document.getElementById('nw-'+k).value=v||'';};
+  set('title-en',a.title_en); set('title-zh',a.title_zh); set('slug',a.slug);
+  set('ex-en',a.excerpt_en); set('ex-zh',a.excerpt_zh);
+  set('body-en',a.body_en); set('body-zh',a.body_zh); set('cover',a.cover);
+  document.getElementById('nw-state').value=a.state||'draft';
+  document.getElementById('nw-editor').style.display='block';
+  document.getElementById('nw-editor').scrollIntoView({behavior:'smooth',block:'start'});
+}
+async function saveArticle(){
+  const g=k=>document.getElementById('nw-'+k).value;
+  const item={ id:EDIT_ID||undefined, state:g('state'), slug:g('slug'),
+    title_en:g('title-en'), title_zh:g('title-zh'),
+    excerpt_en:g('ex-en'), excerpt_zh:g('ex-zh'),
+    body_en:g('body-en'), body_zh:g('body-zh'), cover:g('cover') };
+  if(!item.title_zh && !item.title_en){ msg('nw-msg',false,'請至少填一個標題'); return; }
+  try{
+    const j=await api('/api/articles/save',{method:'POST',body:JSON.stringify({item})});
+    EDIT_ID=j.item.id;
+    msg('nw-msg',true,'已儲存。'+(item.state==='published'?'前台 News 頁刷新即見。':'目前為草稿，前台不顯示。'));
+    loadArticles();
+  }catch(e){ msg('nw-msg',false,'儲存失敗：'+e.message); }
+}
+async function delArticle(id){
+  if(!confirm('確定刪除這篇文章？')) return;
+  try{ await api('/api/articles/delete',{method:'POST',body:JSON.stringify({id})}); loadArticles(); }
+  catch(e){ msg('nw-msg',false,'刪除失敗：'+e.message); }
+}
+async function uploadNewsFile(input){
+  const f=input.files[0]; if(!f)return;
+  try{
+    const j=await uploadFile(f, 'up-news');
+    document.getElementById('nw-cover').value=j.url;
+    msg('nw-msg',true,'已上傳：'+j.url);
+  }catch(e){ msg('nw-msg',false,'上傳失敗：'+e.message); }
+  input.value='';
+}
+
+/* ---------- content ---------- */
+const CIDS=[
+  ['home.h1','首頁 · 大標題'],
+  ['home.p','首頁 · 簡介段落'],
+  ['stat1v','首頁 · 數據 1（產品系列）'],
+  ['stat2v','首頁 · 數據 2（標準型號）'],
+  ['stat3v','首頁 · 數據 3（年資）'],
+  ['stat4v','首頁 · 數據 4（樣品交期）'],
+  ['band.h2','CTA · 標題（各頁底部金色區）'],
+  ['band.p','CTA · 文案'],
+  ['about.s1','關於頁 · 故事第一段'],
+  ['about.s2','關於頁 · 故事第二段'],
+  ['contact.email','聯絡 · 業務郵箱'],
+  ['contact.tel','聯絡 · 電話'],
+  ['contact.addr','聯絡 · 辦公地址'],
+];
+let CONTENT={};
+async function loadContent(){
+  try{ CONTENT=await api('/api/content'); if(!CONTENT||typeof CONTENT!=='object') throw new Error('bad'); }
+  catch(e){ try{ CONTENT=await (await fetch('data/content.json')).json(); }catch(e2){ CONTENT={}; } }
+  document.getElementById('ct-fields').innerHTML=CIDS.map(([cid,label])=>`
+    <div style="border:1px solid #f0ece2;border-radius:6px;padding:14px 16px;margin-bottom:12px">
+      <b style="font-size:13.5px">${label}</b>
+      <div class="row" style="margin-top:10px">
+        <div><label class="fl">English</label><textarea id="cid-${cid}-en">${esc((CONTENT[cid]||{}).en||'')}</textarea></div>
+        <div><label class="fl">繁體中文</label><textarea id="cid-${cid}-zh">${esc((CONTENT[cid]||{}).zh||'')}</textarea></div>
+      </div>
+    </div>`).join('');
+}
+async function saveContent(){
+  const obj={};
+  CIDS.forEach(([cid])=>{
+    const en=document.getElementById('cid-'+cid+'-en').value;
+    const zh=document.getElementById('cid-'+cid+'-zh').value;
+    if(en||zh) obj[cid]={en,zh};
+  });
+  try{ await api('/api/content/save',{method:'POST',body:JSON.stringify(obj)});
+    msg('ct-msg',true,'已發佈！到前台刷新頁面即可看到新版文案。');
+  }catch(e){ msg('ct-msg',false,'發佈失敗：'+e.message); }
+}
+
+/* ---------- password ---------- */
+async function changePw(){
+  try{
+    await api('/api/password',{method:'POST',body:JSON.stringify({old:document.getElementById('pw-old').value,new:document.getElementById('pw-new').value})});
+    msg('st-msg',true,'密碼已更新。');
+  }catch(e){ msg('st-msg',false,'更新失敗：'+e.message); }
+}
+</script>
+</body>
+</html>

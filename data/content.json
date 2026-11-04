@@ -1,0 +1,54 @@
+{
+  "home.h1": {
+    "en": "Precision Optoelectronics\nfor Demanding Applications",
+    "zh": "為嚴苛應用而生的\n精準光電元件"
+  },
+  "home.p": {
+    "en": "OKAYLIGHT delivers a full portfolio of LEDs, UV/IR sources, photodetectors and laser diodes — engineered for reliability across lighting, sensing and industrial systems.",
+    "zh": "OKAYLIGHT 提供完整的 LED、紫外/紅外光源、光電探測器與激光二極管產品矩陣，為照明、感測與工業系統提供可靠保障。"
+  },
+  "stat1v": {
+    "en": "9",
+    "zh": "9"
+  },
+  "stat2v": {
+    "en": "1,000+",
+    "zh": "1,000+"
+  },
+  "stat3v": {
+    "en": "15+",
+    "zh": "15+"
+  },
+  "stat4v": {
+    "en": "48h",
+    "zh": "48h"
+  },
+  "band.h2": {
+    "en": "Need a Custom Optoelectronic Solution?",
+    "zh": "需要客製化光電方案？"
+  },
+  "band.p": {
+    "en": "Send us your specification — our team responds within one business day.",
+    "zh": "寄給我們您的規格，團隊一個工作日內回覆。"
+  },
+  "about.s1": {
+    "en": "OKAYLIGHT began as a components trading desk in Kowloon, serving the lighting industry's shift to solid-state sources. As customers' designs grew more demanding — UV curing modules, IR sensing arrays, precision laser alignment — we grew with them, moving from distribution into parameter-driven supply and application support.",
+    "zh": "OKAYLIGHT 從九龍的一個元件貿易櫃檯起步，服務照明業向固態光源的轉型。隨著客戶的設計愈發嚴苛——UV 固化模組、紅外感測陣列、精密激光對位——我們與他們一同成長，從分銷走向以參數為核心的供應與應用支援。"
+  },
+  "about.s2": {
+    "en": "Today we hold stock programs across nine product families and work directly with factories to control binning consistency. Whether you need 1,000 indicators or a recurring COB program, the same rule applies: the parameters you approve are the parameters you receive.",
+    "zh": "今天，我們在九大產品系列持有常備庫存，並與工廠直接合作控管分檔一致性。無論您需要 1,000 顆指示燈，還是長期 COB 訂單，規則始終如一：您確認的參數，就是您收到的參數。"
+  },
+  "contact.email": {
+    "en": "sales@okaylight.com",
+    "zh": "sales@okaylight.com"
+  },
+  "contact.tel": {
+    "en": "+852 3000 0000",
+    "zh": "+852 3000 0000"
+  },
+  "contact.addr": {
+    "en": "Hong Kong · Unit 8, Kwai Chung",
+    "zh": "香港 · 葵涌 8 號單元"
+  }
+}

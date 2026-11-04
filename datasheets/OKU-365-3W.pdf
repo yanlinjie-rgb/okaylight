@@ -1,0 +1,59 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R /F2 5 0 R >> >> /Contents 6 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Length 1305 >>
+stream
+BT /F2 22 Tf 56 778 Td (OKU-365-3W) Tj ET
+BT /F1 12 Tf 56 754 Td (OKAYLIGHT Product Datasheet \(Sample\) - 3535 SMD) Tj ET
+0.72 0.58 0.29 rg 56 736 483 2 re f
+0 0 0 rg
+BT /F2 10 Tf 56 706 Td (Model) Tj ET
+BT /F1 10 Tf 250 706 Td (OKU-365-3W) Tj ET
+BT /F2 10 Tf 56 682 Td (Package) Tj ET
+BT /F1 10 Tf 250 682 Td (3535 SMD) Tj ET
+BT /F2 10 Tf 56 658 Td (Key Specification) Tj ET
+BT /F1 10 Tf 250 658 Td (UV-A / 365 nm / 3W) Tj ET
+BT /F2 10 Tf 56 634 Td (Peak Wavelength) Tj ET
+BT /F1 10 Tf 250 634 Td (365 nm \(+5/-5 nm binning\)) Tj ET
+BT /F2 10 Tf 56 610 Td (Radiant Flux) Tj ET
+BT /F1 10 Tf 250 610 Td (500 mW @ IF=700 mA) Tj ET
+BT /F2 10 Tf 56 586 Td (Forward Voltage VF) Tj ET
+BT /F1 10 Tf 250 586 Td (3.6 V @ IF=700 mA \(typ\)) Tj ET
+BT /F2 10 Tf 56 562 Td (Package) Tj ET
+BT /F1 10 Tf 250 562 Td (3535 SMD, quartz lens) Tj ET
+BT /F2 10 Tf 56 538 Td (Applications) Tj ET
+BT /F1 10 Tf 250 538 Td (Curing, printing, inspection) Tj ET
+BT /F2 10 Tf 56 514 Td (ESD Protection) Tj ET
+BT /F1 10 Tf 250 514 Td (HBM 2 kV \(Class 2\)) Tj ET
+BT /F1 8 Tf 56 90 Td (Note: sample datasheet for catalogue reference. Contact OKAYLIGHT sales for the latest full specification and binning tables.) Tj ET
+BT /F1 8 Tf 56 66 Td (OKAYLIGHT Optoelectronics Ltd. - Hong Kong - sales@okaylight.com - Tel: +852 3000 0000) Tj ET
+endstream
+endobj
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000251 00000 n 
+0000000348 00000 n 
+0000000450 00000 n 
+trailer
+<< /Size 7 /Root 1 0 R >>
+startxref
+1807
+%%EOF

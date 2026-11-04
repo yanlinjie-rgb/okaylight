@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — OKAYLIGHT</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div data-i18n="topbar.left">Hong Kong · Global Optoelectronics Supplier</div>
+    <div class="lang">
+      <span data-i18n="lang.label">Lang</span>
+      <button data-l="en" class="active" onclick="setLang('en')">EN</button>
+      <button data-l="zh" onclick="setLang('zh')">繁中</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="index.html"><img src="logo.png" alt="OKAYLIGHT"></a>
+    <nav>
+      <a href="products.html" data-i18n="nav.products">Products</a>
+      <a href="why-us.html" data-i18n="nav.why">Why Us</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="news.html" data-i18n="nav.news">News</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <a class="cta" href="#form" data-i18n="nav.quote">Get a Quote</a>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="wrap">
+    <div class="kicker" data-i18n="ct.kicker">CONTACT</div>
+    <h1 class="serif" data-i18n="ct.h1">Get in Touch</h1>
+    <p data-i18n="ct.p">Send a specification, a BOM, or just a question. We reply within one business day.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="cinfo">
+        <div class="item">
+          <div class="lab" data-i18n="ct.lab.email">Sales Email</div>
+          <div class="val"><a href="mailto:sales@okaylightled.com" data-cid="contact.email">sales@okaylightled.com</a></div>
+        </div>
+        <div class="item">
+          <div class="lab" data-i18n="ct.lab.tel">Telephone</div>
+          <div class="val"><a href="tel:+85230000000" data-cid="contact.tel">+852 3000 0000</a><small data-i18n="ct.val.hours">Mon–Fri · 9:00–18:00 (GMT+8)</small></div>
+        </div>
+        <div class="item">
+          <div class="lab" data-i18n="ct.lab.addr">Office</div>
+          <div class="val" data-i18n="foot.addr" data-cid="contact.addr">Hong Kong · Unit 8, Kwai Chung</div>
+        </div>
+        <div class="item">
+          <div class="lab" data-i18n="ct.lab.hours">Business Hours</div>
+          <div class="val" data-i18n="ct.val.hours">Mon–Fri · 9:00–18:00 (GMT+8)</div>
+        </div>
+      </div>
+      <div id="form">
+        <div class="sec-head" style="margin-bottom:10px">
+          <div class="tag" data-i18n="ct.form.h">Send an Enquiry</div>
+        </div>
+        <form class="inq" onsubmit="return sendInquiry(this)">
+          <label data-i18n="ct.f.name">Name</label>
+          <input type="text" name="name" required>
+          <label data-i18n="ct.f.company">Company</label>
+          <input type="text" name="company">
+          <label data-i18n="ct.f.email">Email</label>
+          <input type="email" name="email" required>
+          <label data-i18n="ct.f.interest">Product Interest</label>
+          <select name="interest">
+            <option value="LED" data-i18n="ct.f.opt1">LED</option>
+            <option value="UV LED" data-i18n="ct.f.opt2">UV LED</option>
+            <option value="COB Light Source" data-i18n="ct.f.opt3">COB Light Source</option>
+            <option value="IR Emitter" data-i18n="ct.f.opt4">IR Emitter</option>
+            <option value="Phototransistor" data-i18n="ct.f.opt5">Phototransistor</option>
+            <option value="IR Receiver" data-i18n="ct.f.opt6">IR Receiver</option>
+            <option value="Photodiode" data-i18n="ct.f.opt7">Photodiode</option>
+            <option value="Laser Diode" data-i18n="ct.f.opt8">Laser Diode</option>
+            <option value="RGB LED" data-i18n="ct.f.opt9">RGB LED</option>
+            <option value="Other / Custom" data-i18n="ct.f.opt0">Other / Custom</option>
+          </select>
+          <label data-i18n="ct.f.msg">Message / Specification</label>
+          <textarea name="msg" data-i18n-ph="ct.f.msg.ph" placeholder="Model numbers, wavelengths, quantities, target price…" required></textarea>
+          <button class="btn-gold" type="submit" data-i18n="ct.f.send">Send Enquiry</button>
+          <p class="form-note" id="form-note" data-i18n="ct.f.note">Your enquiry is delivered directly to our sales team. We reply within one business day.</p>
+          <p class="form-note" id="form-ok" style="display:none;color:#7a6120;font-weight:600"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div>
+        <a class="logo" href="index.html" style="display:inline-block;margin-bottom:16px"><img src="logo.png" style="height:36px" alt="OKAYLIGHT"></a>
+        <p style="max-width:320px" data-i18n="foot.about">A Hong Kong-based optoelectronics supplier providing LEDs, UV/IR sources, photodetectors and laser diodes to manufacturers and distributors worldwide.</p>
+      </div>
+      <div><h4 data-i18n="foot.p">Products</h4>
+        <a href="products.html?cat=led" data-i18n="cat.led">LED</a>
+        <a href="products.html?cat=uv" data-i18n="cat.uv">UV LED</a>
+        <a href="products.html?cat=cob" data-i18n="cat.cob">COB Light Source</a>
+        <a href="products.html?cat=ld" data-i18n="cat.ld">Laser Diode</a></div>
+      <div><h4 data-i18n="foot.c">Company</h4>
+        <a href="about.html" data-i18n="nav.about">About</a>
+        <a href="why-us.html" data-i18n="nav.why">Why Us</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a></div>
+      <div><h4 data-i18n="foot.contact">Contact</h4>
+        <a href="mailto:sales@okaylightled.com" data-cid="contact.email">sales@okaylightled.com</a>
+        <a href="#" data-i18n="foot.addr" data-cid="contact.addr">Hong Kong · Unit 8, Kwai Chung</a>
+        <a href="tel:+85230000000" data-cid="contact.tel">Tel: +852 3000 0000</a></div>
+    </div>
+    <div class="copy">
+      <span>© 2026 OKAYLIGHT. <span data-i18n="foot.rights">All rights reserved.</span></span>
+      <span data-i18n="foot.lang">English / 繁體中文</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/config.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/content.js"></script>
+<script>
+/* Enquiry flow: submit straight to the site backend (/api/inquiries).
+   If the backend is unreachable (e.g. static hosting / file://),
+   fall back to opening the visitor's email client pre-filled. */
+function t(k){const d=I18N[getLang()]||I18N.en;return d[k]!==undefined?d[k]:I18N.en[k];}
+async function sendInquiry(f){
+  const d=new FormData(f);
+  const payload={
+    name:d.get('name'),company:d.get('company')||'',email:d.get('email'),
+    interest:d.get('interest')||'',msg:d.get('msg'),
+    page:location.href,lang:getLang()
+  };
+  const ok=document.getElementById('form-ok');
+  const note=document.getElementById('form-note');
+  try{
+    const r=await fetch(OKAY.url('/api/inquiries'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    if(r.ok){
+      f.reset();
+      ok.textContent=t('ct.f.sent');
+      ok.style.display='block';note.style.display='none';
+      setTimeout(()=>{ok.style.display='none';note.style.display='block';},8000);
+      return false;
+    }
+  }catch(e){/* offline -> mailto fallback */}
+  const subject='[OKAYLIGHT Enquiry] '+(d.get('interest')||'General')+' — '+(d.get('company')||d.get('name')||'');
+  const body=
+    'Name: '+d.get('name')+'\n'+
+    'Company: '+(d.get('company')||'-')+'\n'+
+    'Email: '+d.get('email')+'\n'+
+    'Product Interest: '+(d.get('interest')||'-')+'\n\n'+
+    'Message:\n'+d.get('msg')+'\n';
+  location.href='mailto:sales@okaylightled.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  ok.textContent=t('ct.f.fallback');
+  ok.style.display='block';note.style.display='none';
+  setTimeout(()=>{ok.style.display='none';note.style.display='block';},8000);
+  return false;
+}
+</script>
+</body>
+</html>
