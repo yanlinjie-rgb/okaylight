@@ -149,3 +149,19 @@ footer .copy{border-top:1px solid var(--line);margin-top:40px;padding-top:22px;f
 .ds-btn{display:inline-flex;align-items:center;gap:5px;font-size:12px;letter-spacing:.04em;color:#8a6d2f;border:1px solid #e2d7bf;background:#fffdf7;border-radius:3px;padding:5px 9px;text-decoration:none;transition:all .18s}
 .ds-btn:hover{background:#b08d3e;border-color:#b08d3e;color:#fff}
 .ds-dl{border-color:#e2d7bf;background:transparent}
+
+/* --- distributors --- */
+.dist-section{padding:72px 0 84px;border-top:1px solid var(--line);background:#fff}
+.dist-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:44px 56px;margin-top:40px}
+.dist-card{border-top:2px solid var(--ink);padding-top:24px}
+.dist-card h3{font-size:16px;font-weight:700;line-height:1.55;letter-spacing:.1px;color:var(--ink)}
+.dist-cn{display:block;font-size:14px;font-weight:500;color:var(--gold);margin-top:5px}
+.dist-line{font-size:14px;color:var(--muted);margin-top:12px;line-height:1.75}
+.dist-line b{color:var(--ink);font-weight:600;margin-right:3px;letter-spacing:.5px;font-size:13px}
+.dist-line a{color:var(--ink);border-bottom:1px solid var(--line);transition:.2s}
+.dist-line a:hover{color:var(--gold);border-color:var(--gold)}
+.dist-region{margin-top:18px;font-size:11px;letter-spacing:2.5px;font-weight:700;color:var(--gold);text-transform:uppercase}
+@media(max-width:820px){
+  .dist-section{padding:52px 0 60px}
+  .dist-grid{grid-template-columns:1fr;gap:34px}
+}
