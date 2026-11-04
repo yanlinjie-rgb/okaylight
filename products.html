@@ -117,39 +117,9 @@
 <script src="assets/config.js"></script>
 <script src="assets/i18n.js"></script>
 <script>
-/* Representative models — replaced by data/products.json when available
-   (that file is maintained from the admin backend) */
-const DEFAULT_DATA=[
- ["led","OKL-3MM-RD","3mm (T-1)","Red · 620–625 nm","VF 2.0V · IV 800mcd @20mA · 60°","datasheets/OKL-3MM-RD.pdf"],
- ["led","OKL-5MM-BL","5mm (T-1¾)","Blue · 465–470 nm","VF 3.2V · IV 3000mcd @20mA · 30°","datasheets/OKL-5MM-BL.pdf"],
- ["led","OKL-0603-GN","0603 SMD","Green · 570–575 nm","VF 2.1V · IV 120mcd @20mA","datasheets/OKL-0603-GN.pdf"],
- ["led","OKL-2835-WW","2835 SMD","Warm White · 3000K · CRI 80","VF 3.0V · 24lm @60mA","datasheets/OKL-2835-WW.pdf"],
- ["led","OKL-5730-CW","5730 SMD","Cool White · 6500K · CRI 70","VF 3.2V · 55lm @150mA","datasheets/OKL-5730-CW.pdf"],
- ["uv","OKU-365-3W","3535 SMD","UV-A · 365 nm","3W · 500mW radiant @700mA","datasheets/OKU-365-3W.pdf"],
- ["uv","OKU-395-1W","3535 SMD","UV-A · 395–400 nm","1W · 300mW radiant @350mA","datasheets/OKU-395-1W.pdf"],
- ["uv","OKU-405-5MM","5mm (T-1¾)","UV-A · 405 nm","VF 3.4V · 10mW @20mA","datasheets/OKU-405-5MM.pdf"],
- ["cob","OKC-50W-WW","50W COB array","Warm White · 3000K · CRI 80","36V · 5000lm · Ø50mm","datasheets/OKC-50W-WW.pdf"],
- ["cob","OKC-100W-CW","100W COB array","Cool White · 6500K · CRI 70","36V · 10000lm · Ø65mm","datasheets/OKC-100W-CW.pdf"],
- ["cob","OKC-30W-BB","30W COB array","Blue · 450 nm · grow-light","30V · 900mW radiant","datasheets/OKC-30W-BB.pdf"],
- ["ire","OKI-850-5MM","5mm (T-1¾)","IR · 850 nm","VF 1.5V · 30mW/sr @100mA · 20°","datasheets/OKI-850-5MM.pdf"],
- ["ire","OKI-940-3MM","3mm (T-1)","IR · 940 nm","VF 1.4V · 12mW/sr @100mA","datasheets/OKI-940-3MM.pdf"],
- ["ire","OKI-850-2835","2835 SMD","IR · 850 nm","VF 1.5V · 60mW/sr · 120°","datasheets/OKI-850-2835.pdf"],
- ["pt","OKP-850-5MM","5mm (T-1¾)","NPN · peak 850 nm","VCEO 30V · IC 5mA · with/without lens","datasheets/OKP-850-5MM.pdf"],
- ["pt","OKP-940-3MM","3mm (T-1)","NPN · peak 940 nm","VCEO 30V · IC 3mA","datasheets/OKP-940-3MM.pdf"],
- ["pt","OKP-850-SMD","1206 SMD","NPN · peak 850 nm","VCEO 30V · side-view option","datasheets/OKP-850-SMD.pdf"],
- ["irr","OKR-38K-5MM","5mm module","38kHz · 940nm receiver","2.7–5.5V · TTL output","datasheets/OKR-38K-5MM.pdf"],
- ["irr","OKR-38K-MINI","Mini epoxy","38kHz · 940nm receiver","2.7–5.5V · 45m range","datasheets/OKR-38K-MINI.pdf"],
- ["irr","OKR-36K-SMD","SMD shielded","36kHz · 940nm receiver","2.7–5.5V · anti-interference","datasheets/OKR-36K-SMD.pdf"],
- ["pd","OKD-850-SMD","1206 SMD","Peak 850 nm","Dark current 5nA · rise time 20ns","datasheets/OKD-850-SMD.pdf"],
- ["pd","OKD-PIN-5MM","5mm (T-1)","PIN · 400–1100 nm","VR 30V · 0.55A/W @850nm","datasheets/OKD-PIN-5MM.pdf"],
- ["pd","OKD-940-SMD","0805 SMD","Peak 940 nm","Dark current 1nA · fast response","datasheets/OKD-940-SMD.pdf"],
- ["ld","OKL-650-5MW","TO-18 · 5.6mm","Red · 650 nm · 5mW","Single mode · Class IIIa","datasheets/OKL-650-5MW.pdf"],
- ["ld","OKL-780-10MW","TO-18 · 5.6mm","IR · 780 nm · 10mW","CD/DVD pickup · sensing","datasheets/OKL-780-10MW.pdf"],
- ["ld","OKL-405-20MW","TO-38 · 5.6mm","Violet · 405 nm · 20mW","Blue-ray / optical disc","datasheets/OKL-405-20MW.pdf"],
- ["rgb","OKG-5050-RGB","5050 SMD","Common anode · 4-pin","20mA/channel · 620/525/470nm","datasheets/OKG-5050-RGB.pdf"],
- ["rgb","OKG-WS2812","5050 SMD","Addressable · built-in IC","800kbps · 5V single-wire","datasheets/OKG-WS2812.pdf"],
- ["rgb","OKG-5MM-RGB","5mm diffused","Common cathode · 4-pin","20mA/channel · diffused lens","datasheets/OKG-5MM-RGB.pdf"]
-];
+/* 产品数据由后端 /api/products 提供；失败时回退 data/products.json。
+   这里不再内置旧型号，避免残留数据被误显示。 */
+const DEFAULT_DATA=[];
 let DATA=DEFAULT_DATA;
 let CAT='all';
 function t(k){const d=I18N[getLang()]||I18N.en;return d[k]!==undefined?d[k]:I18N.en[k];}
