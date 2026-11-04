@@ -42,9 +42,12 @@ const I18N = {
     "pr.th.ds":"Datasheet",
     "pr.ds.view":"View","pr.ds.download":"Download","pr.ds.none":"—",
     "pr.empty":"No models match your search.",
+    "pr.pager.info":"{n} models · page {p} of {t}","pr.pager.prev":"Prev","pr.pager.next":"Next",
     /* category names */
     "cat.led":"LED","cat.uv":"UV LED","cat.cob":"COB Light Source","cat.ire":"IR Emitter","cat.pt":"Phototransistor","cat.irr":"IR Receiver","cat.pd":"Photodiode","cat.ld":"Laser Diode","cat.rgb":"RGB LED",
+    "cat.tvs":"TVS / ESD","cat.seg":"LED Display","cat.psw":"Photo Switch",
     "cat.led.en":"Light Emitting Diode","cat.uv.en":"Ultraviolet LED","cat.cob.en":"Chip-on-Board","cat.ire.en":"Infrared Emitting Diode","cat.pt.en":"Photo Transistor","cat.irr.en":"IR Receiver Module","cat.pd.en":"Photo Diode","cat.ld.en":"Laser Diode","cat.rgb.en":"Full-Color LED",
+    "cat.tvs.en":"Circuit Protection","cat.seg.en":"7-Segment Display","cat.psw.en":"Slot & Reflective",
     "cat.led.d":"Standard & high-brightness LEDs in 3mm/5mm/SMD, full color & wavelength range.",
     "cat.uv.d":"365–405nm UV emitters for curing, printing, disinfection and inspection.",
     "cat.cob.d":"High-density COB arrays for illumination, stage and grow-light systems.",
@@ -54,6 +57,9 @@ const I18N = {
     "cat.pd.d":"Fast, low-noise photodiodes for optical communication and measurement.",
     "cat.ld.d":"Visible & IR laser diodes for ranging, alignment and optical modules.",
     "cat.rgb.d":"Addressable & common-anode RGB LEDs for signage and ambient lighting.",
+    "cat.tvs.d":"TVS diodes and ESD arrays protecting interfaces, data lines and power rails.",
+    "cat.seg.d":"Single and multi-digit 7-segment displays in common anode or cathode.",
+    "cat.psw.d":"Slot and reflective optical switches for position and edge detection.",
 
     /* why-us page */
     "wu.kicker":"WHY OKAYLIGHT","wu.h1":"Built for Engineers,\nTrusted by Buyers","wu.p":"Every order is backed by parameter discipline, stable binning and responsive engineering support — the details that keep your production line running.",
@@ -141,7 +147,9 @@ const I18N = {
     "pr.th.ds":"規格書",
     "pr.ds.view":"查看","pr.ds.download":"下載","pr.ds.none":"—",
     "pr.empty":"沒有符合搜尋條件的型號。",
+    "pr.pager.info":"共 {n} 款 · 第 {p} / {t} 頁","pr.pager.prev":"上一頁","pr.pager.next":"下一頁",
     "cat.led":"發光二極管","cat.uv":"紫外 LED","cat.cob":"COB 光源","cat.ire":"紅外發射管","cat.pt":"光電晶體","cat.irr":"紅外接收頭","cat.pd":"光電二極管","cat.ld":"激光二極管","cat.rgb":"RGB LED",
+    "cat.tvs":"TVS / 靜電保護","cat.seg":"LED 數碼管","cat.psw":"槽型/反射式光電開關",
     "cat.led.en":"Light Emitting Diode","cat.uv.en":"Ultraviolet LED","cat.cob.en":"Chip-on-Board","cat.ire.en":"Infrared Emitting Diode","cat.pt.en":"Photo Transistor","cat.irr.en":"IR Receiver Module","cat.pd.en":"Photo Diode","cat.ld.en":"Laser Diode","cat.rgb.en":"Full-Color LED",
     "cat.led.d":"3mm/5mm/SMD 標準及高亮 LED，覆蓋全色系與波長範圍。",
     "cat.uv.d":"365–405nm 紫外發光管，適用固化、印刷、消毒與檢測。",
@@ -152,6 +160,9 @@ const I18N = {
     "cat.pd.d":"高速低噪光電二極管，適用光通訊與測量。",
     "cat.ld.d":"可見光與紅外激光二極管，適用測距、對位與光學模組。",
     "cat.rgb.d":"可尋址與共陽 RGB LED，適用招牌與氣氛照明。",
+    "cat.tvs.d":"TVS 二極管與 ESD 陣列，保護接口、數據線與電源軌。",
+    "cat.seg.d":"單位與多位 7 段數碼管，共陰或共陽可選。",
+    "cat.psw.d":"槽型與反射式光電開關，用於位置與邊緣檢測。",
 
     "wu.kicker":"為何選 OKAYLIGHT","wu.h1":"為工程師打造，\n受採購信賴","wu.p":"每張訂單背後，是嚴謹的參數管理、穩定的分檔與快速的工程支援——正是保障生產線順暢運轉的關鍵細節。",
     "wu.tag":"核心優勢","wu.h2":"客戶持續回購的四大理由",
