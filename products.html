@@ -158,14 +158,19 @@ function render(){
   const tb=document.getElementById('tbody');
   const rows=DATA.filter(r=>(CAT==='all'||r.cat===CAT)&&(!q||Object.values(r).join(' ').toLowerCase().includes(q)));
   tb.innerHTML=rows.map(r=>{
-    const ds=r.ds?'<div class="ds-cell">'
-      +'<a class="ds-btn" href="'+r.ds+'" target="_blank" title="'+t('pr.ds.view')+'">'
-      +'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>'
-      +t('pr.ds.view')+'</a>'
-      +'<a class="ds-btn ds-dl" href="'+r.ds+'" download title="'+t('pr.ds.download')+'">'
-      +'<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="3" x2="12" y2="15"/></svg>'
-      +t('pr.ds.download')+'</a></div>'
-      :'<span style="color:#b9ac96">'+t('pr.ds.none')+'</span>';
+    const has=!!r.ds;
+    const icView='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+    const icDl='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="3" x2="12" y2="15"/></svg>';
+    const ds='<div class="ds-cell">'
+      +(has
+        ?'<a class="ds-btn" href="'+r.ds+'" target="_blank" rel="noopener" title="'+t('pr.ds.view')+'">'
+        :'<span class="ds-btn is-off" aria-disabled="true" title="'+t('pr.ds.none')+'">')
+      +icView+t('pr.ds.view')+(has?'</a>':'</span>')
+      +(has
+        ?'<a class="ds-btn ds-dl" href="'+r.ds+'" download title="'+t('pr.ds.download')+'">'
+        :'<span class="ds-btn ds-dl is-off" aria-disabled="true" title="'+t('pr.ds.none')+'">')
+      +icDl+t('pr.ds.download')+(has?'</a>':'</span>')
+      +'</div>';
     return '<tr><td class="model">'+r.model+'</td><td>'+r.pkg+'</td><td>'+r.spec+'</td><td>'+r.detail+'</td><td class="td-ds">'+ds+'</td></tr>';
   }).join('');
   document.getElementById('empty').style.display=rows.length?'none':'block';
