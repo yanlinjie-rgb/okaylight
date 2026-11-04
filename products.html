@@ -54,6 +54,9 @@
       <button class="tab" data-cat="pd" data-i18n="cat.pd">Photodiode</button>
       <button class="tab" data-cat="ld" data-i18n="cat.ld">Laser Diode</button>
       <button class="tab" data-cat="rgb" data-i18n="cat.rgb">RGB LED</button>
+      <button class="tab" data-cat="tvs" data-i18n="cat.tvs">TVS / ESD</button>
+      <button class="tab" data-cat="seg" data-i18n="cat.seg">LED Display</button>
+      <button class="tab" data-cat="psw" data-i18n="cat.psw">Photo Switch</button>
     </div>
     <div class="searchbar">
       <input type="text" id="q" data-i18n-ph="pr.search.ph" placeholder="Search model, wavelength or keyword…">
@@ -72,6 +75,7 @@
         <tbody id="tbody"></tbody>
       </table>
     </div>
+    <div class="pager" id="pager"></div>
     <p class="cat-note" id="empty" style="display:none" data-i18n="pr.empty">No models match your search.</p>
     <p class="cat-note" data-i18n="pr.note">Table shows representative models. Full stock list and datasheets available on request.</p>
   </div>
@@ -122,12 +126,18 @@
 const DEFAULT_DATA=[];
 let DATA=DEFAULT_DATA;
 let CAT='all';
+const PER=100;
+let PAGE=1;
 function t(k){const d=I18N[getLang()]||I18N.en;return d[k]!==undefined?d[k]:I18N.en[k];}
 function render(){
   const q=(document.getElementById('q').value||'').toLowerCase();
   const tb=document.getElementById('tbody');
   const rows=DATA.filter(r=>(CAT==='all'||r.cat===CAT)&&(!q||Object.values(r).join(' ').toLowerCase().includes(q)));
-  tb.innerHTML=rows.map(r=>{
+  const pages=Math.max(1,Math.ceil(rows.length/PER));
+  if(PAGE>pages)PAGE=pages;
+  if(PAGE<1)PAGE=1;
+  const view=rows.slice((PAGE-1)*PER,PAGE*PER);
+  tb.innerHTML=view.map(r=>{
     const has=!!r.ds;
     const icView='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>';
     const icDl='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="3" x2="12" y2="15"/></svg>';
@@ -144,14 +154,41 @@ function render(){
     return '<tr><td class="model">'+r.model+'</td><td>'+r.pkg+'</td><td>'+r.spec+'</td><td>'+r.detail+'</td><td class="td-ds">'+ds+'</td></tr>';
   }).join('');
   document.getElementById('empty').style.display=rows.length?'none':'block';
+  renderPager(rows.length,pages);
+}
+function renderPager(total,pages){
+  const box=document.getElementById('pager');
+  if(!box)return;
+  if(!total){box.innerHTML='';return;}
+  const info=t('pr.pager.info').replace('{n}',total).replace('{p}',PAGE).replace('{t}',pages);
+  let h='<span class="pg-info">'+info+'</span>';
+  if(pages>1){
+    h+='<button class="pg-btn" data-go="'+(PAGE-1)+'"'+(PAGE<=1?' disabled':'')+'>&lsaquo; '+t('pr.pager.prev')+'</button>';
+    let s=Math.max(1,PAGE-2), e=Math.min(pages,s+4); s=Math.max(1,e-4);
+    if(s>1){h+='<button class="pg-btn" data-go="1">1</button>';if(s>2)h+='<span class="pg-gap">&hellip;</span>';}
+    for(let i=s;i<=e;i++)h+='<button class="pg-btn'+(i===PAGE?' on':'')+'" data-go="'+i+'">'+i+'</button>';
+    if(e<pages){if(e<pages-1)h+='<span class="pg-gap">&hellip;</span>';h+='<button class="pg-btn" data-go="'+pages+'">'+pages+'</button>';}
+    h+='<button class="pg-btn" data-go="'+(PAGE+1)+'"'+(PAGE>=pages?' disabled':'')+'>'+t('pr.pager.next')+' &rsaquo;</button>';
+  }
+  box.innerHTML=h;
 }
 document.getElementById('tabs').addEventListener('click',e=>{
   const b=e.target.closest('.tab');if(!b)return;
   CAT=b.dataset.cat;
+  PAGE=1;
   document.querySelectorAll('.tab').forEach(t2=>t2.classList.toggle('active',t2===b));
   render();
 });
-document.getElementById('q').addEventListener('input',render);
+document.getElementById('pager').addEventListener('click',e=>{
+  const b=e.target.closest('button[data-go]');if(!b||b.disabled)return;
+  const n=parseInt(b.dataset.go,10);
+  if(!n||n===PAGE)return;
+  PAGE=n;
+  render();
+  const tw=document.querySelector('.tablewrap');
+  if(tw)tw.scrollIntoView({behavior:'smooth',block:'start'});
+});
+document.getElementById('q').addEventListener('input',()=>{PAGE=1;render();});
 document.addEventListener('okaylang',render);
 /* Load backend-managed catalogue.
    1) Cloudflare Worker（线上）/ 本地 node server   2) 静态 data/products.json 兜底 */
