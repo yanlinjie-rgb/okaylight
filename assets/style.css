@@ -183,3 +183,85 @@ footer .copy{border-top:1px solid var(--line);margin-top:40px;padding-top:22px;f
   .dist-section{padding:52px 0 60px}
   .dist-grid{grid-template-columns:1fr;gap:34px}
 }
+
+/* --- product detail --- */
+.pd-crumb{border-bottom:1px solid var(--line);font-size:12.5px;color:var(--muted);background:#fff}
+.pd-crumb .wrap{display:flex;align-items:center;gap:8px;height:46px;flex-wrap:wrap}
+.pd-crumb a{color:var(--muted)}
+.pd-crumb a:hover{color:var(--gold)}
+.pd-crumb b{color:var(--ink);font-weight:600}
+.pd-crumb span{color:#c9c2b4}
+.pd-main{padding:52px 0 10px}
+.pd-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:56px;align-items:start}
+.pd-media{background:var(--cream);border:1px solid var(--line);padding:38px;text-align:center}
+.pd-imgbox{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}
+.pd-imgbox img{max-width:66%;height:auto}
+.pd-pkg{font-family:Georgia,serif;font-size:15px;color:var(--muted);letter-spacing:1px;margin-top:14px}
+.pd-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.pd-badge{font-size:11.5px;letter-spacing:1px;padding:4px 11px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:#fff}
+.pd-stock{color:#2e7d4f;border-color:#cfe3d5;background:#eef7ee;font-weight:600}
+.pd-title{font-family:Georgia,serif;font-size:34px;font-weight:400;letter-spacing:-.3px;line-height:1.2;word-break:break-word}
+.pd-desc{color:var(--muted);font-size:14.5px;margin-top:14px;max-width:560px}
+.pd-facts{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);margin-top:26px}
+.pd-facts>div{padding:14px 18px;border-right:1px solid var(--line)}
+.pd-facts>div:last-child{border-right:none}
+.pd-facts .k{display:block;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:#a49b8b;margin-bottom:6px}
+.pd-facts b{font-size:14.5px;font-weight:600;word-break:break-word}
+.pd-ds{display:flex;align-items:center;gap:16px;border:1px solid var(--line);background:var(--cream);padding:16px 18px;margin-top:20px;flex-wrap:wrap}
+.pd-ds-ic{width:40px;height:46px;border:1px solid #d9d1c0;background:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.5px;color:#8a6d2f;font-weight:700}
+.pd-ds-meta{flex:1;min-width:140px;display:flex;flex-direction:column;gap:3px}
+.pd-ds-meta b{font-size:13px}
+.pd-ds-meta span{font-size:12px;color:var(--muted)}
+.pd-ds-actions{display:flex;gap:8px;flex-wrap:wrap}
+.pd-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-family:inherit;padding:9px 18px;border:1px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;transition:.2s;text-decoration:none}
+.pd-btn:hover{background:var(--ink);color:#fff}
+.pd-primary{background:var(--ink);color:#fff}
+.pd-primary:hover{background:#333}
+.pd-btn.pd-off{opacity:.38;cursor:not-allowed;border-color:#d9d1c0;color:#9a9285;background:#f7f5f0}
+.pd-btn.pd-off:hover{background:#f7f5f0;color:#9a9285}
+.pd-share{margin-top:28px}
+.pd-label{font-size:11.5px;letter-spacing:1.6px;text-transform:uppercase;color:#a49b8b;margin-bottom:10px}
+.pd-share-row{display:flex;gap:8px;flex-wrap:wrap}
+.pd-sbtn{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink);border:1px solid var(--line);background:#fff;padding:8px 14px;cursor:pointer;transition:.18s;text-decoration:none}
+.pd-sbtn:hover{border-color:var(--ink);background:var(--ink);color:#fff}
+.pd-sbtn svg{width:15px;height:15px;flex:none}
+.pd-sec{padding:44px 0;border-top:1px solid var(--line);margin-top:44px}
+.pd-cols{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.pd-h2{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--ink);font-weight:700;padding-bottom:12px;border-bottom:2px solid var(--ink);margin-bottom:4px}
+.pd-h2-gap{margin-top:40px}
+.pd-spec{width:100%;border-collapse:collapse;font-size:14px}
+.pd-spec th{width:44%;text-align:left;font-weight:400;color:var(--muted);padding:13px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.pd-spec td{padding:13px 0;border-bottom:1px solid var(--line);font-weight:600;word-break:break-word}
+.pd-feat{list-style:none;margin-top:16px}
+.pd-feat li{position:relative;padding-left:20px;margin:11px 0;font-size:14px;color:#3a3a3a;line-height:1.65}
+.pd-feat li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;background:var(--gold)}
+.pd-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.pd-tag{font-size:12.5px;padding:8px 14px;background:#f6f4ef;border:1px solid var(--line);color:#4a4a4a}
+.pd-rel{padding-bottom:80px}
+.pd-rel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:22px}
+.pd-rel-card{display:flex;gap:14px;align-items:center;background:#fff;padding:16px;text-decoration:none;transition:.18s}
+.pd-rel-card:hover{background:var(--cream)}
+.pd-rel-thumb{width:52px;height:52px;flex:none;background:var(--cream);border:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+.pd-rel-thumb img{max-width:74%;height:auto}
+.pd-rel-card b{display:block;font-size:13.5px;font-weight:600;color:var(--ink);word-break:break-word}
+.pd-rel-card span{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+.pd-empty{color:var(--muted);font-size:14px;margin-top:16px}
+@media(max-width:900px){
+  .pd-grid{grid-template-columns:1fr;gap:32px}
+  .pd-cols{grid-template-columns:1fr;gap:40px}
+  .pd-rel-grid{grid-template-columns:repeat(2,1fr)}
+  .pd-title{font-size:26px}
+  .pd-facts{grid-template-columns:1fr}
+  .pd-facts>div{border-right:none;border-bottom:1px solid var(--line)}
+  .pd-facts>div:last-child{border-bottom:none}
+}
+@media(max-width:560px){
+  .pd-rel-grid{grid-template-columns:1fr}
+  .pd-ds{flex-direction:column;align-items:flex-start}
+  .pd-ds-actions{width:100%}
+  .pd-ds-actions .pd-btn{flex:1}
+}
+
+/* model link in product list */
+.model a{color:inherit;border-bottom:1px solid transparent;transition:.18s}
+.model a:hover{color:var(--gold);border-color:var(--gold)}
