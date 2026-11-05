@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product — OKAYLIGHT</title>
+<meta name="description" content="OKAYLIGHT optoelectronic component — specifications, datasheet and related part numbers.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div data-i18n="topbar.left">Hong Kong · Global Optoelectronics Supplier</div>
+    <div class="lang">
+      <span data-i18n="lang.label">Lang</span>
+      <button data-l="en" class="active" onclick="setLang('en')">EN</button>
+      <button data-l="zh" onclick="setLang('zh')">繁中</button>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="index.html"><img src="logo.png" alt="OKAYLIGHT"></a>
+    <nav>
+      <a href="products.html" class="active" data-i18n="nav.products">Products</a>
+      <a href="why-us.html" data-i18n="nav.why">Why Us</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="news.html" data-i18n="nav.news">News</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <a class="cta" href="contact.html" data-i18n="nav.quote">Get a Quote</a>
+  </div>
+</header>
+
+<div class="pd-crumb">
+  <div class="wrap">
+    <a href="index.html" data-i18n="pd.home">Home</a><span>/</span>
+    <a href="products.html" data-i18n="nav.products">Products</a><span>/</span>
+    <a id="bc-cat" href="products.html"></a><span>/</span>
+    <b id="bc-model">—</b>
+  </div>
+</div>
+
+<section class="pd-main">
+  <div class="wrap">
+    <div class="pd-grid">
+
+      <div class="pd-media">
+        <div class="pd-imgbox"><img src="logo.png" alt="OKAYLIGHT"></div>
+        <div class="pd-pkg" id="pd-pkg-img">—</div>
+      </div>
+
+      <div class="pd-info">
+        <div class="pd-badges">
+          <span class="pd-badge" id="pd-cat">—</span>
+          <span class="pd-badge pd-stock" data-i18n="pd.stock">現貨供應</span>
+        </div>
+
+        <h1 class="pd-title" id="pd-model">—</h1>
+        <p class="pd-desc" id="pd-desc"></p>
+
+        <div class="pd-facts">
+          <div><span class="k" data-i18n="pd.pn">Part No.</span><b id="pd-pn">—</b></div>
+          <div><span class="k" data-i18n="pd.pkg">Package</span><b id="pd-pkg">—</b></div>
+          <div><span class="k" data-i18n="pd.status">Status</span><b data-i18n="pd.stock">現貨供應</b></div>
+        </div>
+
+        <div class="pd-ds" id="pd-ds-box">
+          <div class="pd-ds-ic">PDF</div>
+          <div class="pd-ds-meta">
+            <b data-i18n="pd.datasheet">Datasheet</b>
+            <span id="pd-ds-name">—</span>
+          </div>
+          <div class="pd-ds-actions">
+            <button class="pd-btn pd-primary" id="pd-view" type="button" data-i18n="pd.preview">線上預覽</button>
+            <a class="pd-btn" id="pd-dl" download data-i18n="pd.download">下載 PDF</a>
+          </div>
+        </div>
+
+        <div class="pd-share">
+          <div class="pd-label" data-i18n="pd.share">分享此產品</div>
+          <div class="pd-share-row" id="pd-share"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="pd-sec">
+  <div class="wrap">
+    <div class="pd-cols">
+      <div>
+        <h2 class="pd-h2" data-i18n="pd.specs">規格</h2>
+        <table class="pd-spec"><tbody id="pd-spec-body"></tbody></table>
+      </div>
+      <div>
+        <h2 class="pd-h2" data-i18n="pd.features">關鍵特性</h2>
+        <ul class="pd-feat" id="pd-feat"></ul>
+        <h2 class="pd-h2 pd-h2-gap" data-i18n="pd.apps">應用領域</h2>
+        <div class="pd-tags" id="pd-apps"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pd-sec pd-rel">
+  <div class="wrap">
+    <h2 class="pd-h2" data-i18n="pd.related">相關料號</h2>
+    <div class="pd-rel-grid" id="pd-rel"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div>
+        <div class="flogo" style="margin-bottom:16px"><span class="flogo-mark">OKAYLIGHT</span><span class="flogo-legal">LED TECHNOLOGY CO., LIMITED</span></div>
+        <p style="max-width:320px" data-i18n="foot.about">A Hong Kong-based optoelectronics supplier providing LEDs, UV/IR sources, photodetectors and laser diodes to manufacturers and distributors worldwide.</p>
+      </div>
+      <div><h4 data-i18n="foot.p">Products</h4>
+        <a href="products.html?cat=led" data-i18n="cat.led">LED</a>
+        <a href="products.html?cat=tvs" data-i18n="cat.tvs">TVS / ESD</a>
+        <a href="products.html?cat=seg" data-i18n="cat.seg">LED Display</a>
+        <a href="products.html?cat=rgb" data-i18n="cat.rgb">RGB LED</a></div>
+      <div><h4 data-i18n="foot.c">Company</h4>
+        <a href="about.html" data-i18n="nav.about">About</a>
+        <a href="why-us.html" data-i18n="nav.why">Why Us</a>
+        <a href="contact.html" data-i18n="nav.contact">Contact</a></div>
+      <div><h4 data-i18n="foot.contact">Contact</h4>
+        <a href="mailto:sales@okaylightled.com">sales@okaylightled.com</a>
+        <a href="#" data-i18n="foot.addr">14/F, Belgian Bank Building, 721–725 Nathan Road, Mong Kok, Kowloon, Hong Kong</a></div>
+    </div>
+    <div class="copy">
+      <span>© 2026 OKAYLIGHT. <span data-i18n="foot.rights">All rights reserved.</span></span>
+      <span data-i18n="foot.lang">English / 繁體中文</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/config.js"></script>
+<script src="assets/i18n.js"></script>
+<script>
+/* ---------- 分类元数据：描述 / 特性 / 应用 / 规格排序 ---------- */
+const CAT_META = {
+  led:{zh:'發光二極管',en:'LED',
+    desc:{en:'Standard and high-brightness LEDs in SMD and leaded packages, covering the full visible colour and wavelength range.',zh:'標準與高亮度 LED，涵蓋貼片與插件封裝，覆蓋全可見光顏色與波長範圍。'},
+    feat:{en:['RoHS compliant, halogen-free materials','Viewing angle options from 15° to 140°','Tape & reel packaging for high-speed SMT','Consistent binning on wavelength and intensity'],zh:['符合 RoHS、無鹵素材','視角可選 15° 至 140°','編帶包裝，適合高速 SMT','波長與亮度分檔一致']},
+    apps:{en:['Indicators & status lights','Backlighting','Automotive interior','Consumer electronics'],zh:['指示燈與狀態燈','背光照明','車用內裝','消費電子']},
+    order:['package_spec','emission_color','wavelength','peak_wavelength','color_temp','forward_voltage','forward_current','luminous_intensity','luminous_flux','viewing_angle','power','lens_color','base_type','tape_type','fwhm','esd_rating','diode_config','operating_temp']},
+  uv:{zh:'紫外 LED',en:'UV LED',
+    desc:{en:'UVA and UVC emitters from 265nm to 405nm for curing, printing, disinfection and inspection.',zh:'UVA 與 UVC 光源，波長 265nm 至 405nm，適用固化、印刷、消毒與檢測。'},
+    feat:{en:['Wavelengths from 265nm (UVC) to 405nm (UVA)','Ceramic substrate for thermal stability','Quartz or silicone lens options','RoHS compliant'],zh:['波長涵蓋 265nm (UVC) 至 405nm (UVA)','陶瓷基板，散熱穩定','石英或矽膠透鏡可選','符合 RoHS']},
+    apps:{en:['UV curing','Printing & coating','Disinfection','Fluorescence inspection'],zh:['UV 固化','印刷與塗布','消毒殺菌','螢光檢測']},
+    order:['package_spec','uv_type','peak_wavelength','radiant_power','forward_voltage','forward_current','power_dissipation','viewing_angle','fwhm','reverse_voltage','reverse_current','esd_rating','operating_temp']},
+  ire:{zh:'紅外發射管',en:'IR Emitter',
+    desc:{en:'850nm and 940nm infrared emitters for remote control, sensing and night-vision illumination.',zh:'850nm 與 940nm 紅外發射管，適用遙控、感測與夜視補光。'},
+    feat:{en:['850nm / 940nm peak wavelength','High radiant intensity','Narrow and wide beam options','SMD and through-hole packages'],zh:['峰值波長 850nm / 940nm','高輻射強度','窄角與廣角可選','貼片與插件封裝']},
+    apps:{en:['Remote controls','Proximity sensing','Night-vision illumination','Optical switches'],zh:['遙控器','近接感測','夜視補光','光學開關']},
+    order:['package_spec','wavelength','radiant_intensity','forward_voltage','forward_current','power_dissipation','viewing_angle','fwhm','reverse_voltage','operating_temp']},
+  irr:{zh:'紅外接收頭',en:'IR Receiver',
+    desc:{en:'Integrated 38kHz IR receiver modules with built-in preamplifier and ambient-light shielding.',zh:'內建前置放大與抗環境光干擾的 38kHz 紅外接收模組。'},
+    feat:{en:['38kHz carrier, other frequencies on request','Integrated preamplifier and filter','Receiving distance up to 15m','Shielded against fluorescent light'],zh:['38kHz 載波，其他頻率可訂製','內建前置放大與濾波','接收距離最遠 15m','抗日光燈干擾']},
+    apps:{en:['TV & set-top boxes','Air conditioners','Audio systems','Industrial remote control'],zh:['電視與機上盒','空調','音響系統','工業遙控']},
+    order:['package_spec','center_frequency','receive_distance','working_voltage','working_current','receive_angle','power_dissipation','operating_temp']},
+  pd:{zh:'光電二極管',en:'Photodiode',
+    desc:{en:'Fast, low-noise photodiodes for optical communication, measurement and light sensing.',zh:'高速低雜訊光電二極管，適用光通訊、量測與光感測。'},
+    feat:{en:['High sensitivity, low dark current','Fast response time','Spectral range 400–1100nm','SMD and leaded packages'],zh:['高靈敏度、低暗電流','響應速度快','光譜範圍 400–1100nm','貼片與插件封裝']},
+    apps:{en:['Light sensing','Optical encoders','Pulse oximetry','Position detection'],zh:['光感測','光學編碼器','血氧量測','位置檢測']},
+    order:['package_spec','spectral_range','peak_wavelength','dark_current','reverse_voltage','power_dissipation','receive_angle','operating_temp']},
+  pt:{zh:'光電晶體',en:'Phototransistor',
+    desc:{en:'NPN phototransistors with high gain for proximity, encoder and light-sensing circuits.',zh:'高增益 NPN 光電晶體，適用近接、編碼器與光感測電路。'},
+    feat:{en:['NPN phototransistor','High gain, low saturation voltage','Visible-light filtered options','Through-hole and SMD'],zh:['NPN 光電晶體','高增益、低飽和壓降','可選可見光濾除','插件與貼片']},
+    apps:{en:['Proximity detection','Optical encoders','Photo interrupters','Light sensing'],zh:['近接檢測','光學編碼器','光遮斷器','光感測']},
+    order:['package_spec','transistor_type','peak_wavelength','vceo','vce_sat','dark_current','collector_current','power_dissipation','operating_temp']},
+  rgb:{zh:'RGB LED',en:'RGB LED',
+    desc:{en:'Full-colour RGB LEDs, including addressable versions with built-in driver IC.',zh:'全彩 RGB LED，含內建驅動 IC 的可尋址版本。'},
+    feat:{en:['Common anode and addressable versions','Wide colour gamut, high brightness','Built-in IC options (WS2812 compatible)','Tape & reel packaging'],zh:['共陽與可尋址版本','廣色域、高亮度','內建 IC（兼容 WS2812）','編帶包裝']},
+    apps:{en:['Signage','Ambient lighting','Wearables','Gaming peripherals'],zh:['招牌廣告','氣氛照明','穿戴裝置','電競周邊']},
+    order:['package_spec','dominant_wavelength_r','dominant_wavelength_g','dominant_wavelength_b','peak_wavelength_r','peak_wavelength_g','peak_wavelength_b','luminous_intensity_r','luminous_intensity_g','luminous_intensity_b','forward_voltage','forward_voltage_r','forward_voltage_g','forward_voltage_b','forward_current','forward_current_r','forward_current_g','forward_current_b','viewing_angle','data_rate','pwm_frequency','static_current','propagation_delay','rise_time','fall_time','esd_rating','operating_temp']},
+  tvs:{zh:'TVS / 靜電保護',en:'TVS / ESD',
+    desc:{en:'Transient voltage suppressors and ESD protection devices for interfaces, data lines and power rails.',zh:'瞬態電壓抑制與靜電保護元件，適用接口、數據線與電源軌。'},
+    feat:{en:['Unidirectional and bidirectional','IEC 61000-4-2 ESD protection','Low clamping voltage','SOD / SMA / SMB / SMC packages'],zh:['單向與雙向可選','符合 IEC 61000-4-2 靜電防護','低箝位電壓','SOD / SMA / SMB / SMC 封裝']},
+    apps:{en:['Power rails','Data interfaces','Automotive electronics','Industrial control'],zh:['電源軌保護','數據接口','車用電子','工業控制']},
+    order:['package_spec','device_type','polarity','channel_count','vrwm','vbr','clamp_voltage','ppp','ipp','cj','reverse_current','protection_level','operating_temp']},
+  seg:{zh:'LED 數碼管',en:'LED Display',
+    desc:{en:'Single and multi-digit 7-segment LED displays in common anode or common cathode.',zh:'單位與多位 7 段 LED 數碼管，共陽或共陰可選。'},
+    feat:{en:['Common anode or common cathode','Single and multi-digit options','High brightness, wide viewing angle','RoHS compliant'],zh:['共陽或共陰','單位與多位可選','高亮度、廣視角','符合 RoHS']},
+    apps:{en:['Instrument panels','Appliances','Counters & meters','Industrial displays'],zh:['儀表面板','家電','計數器與電錶','工業顯示']},
+    order:['package_spec','digit_count','display_type','char_size','emission_color','led_polarity','forward_voltage','luminous_intensity','power_dissipation','operating_temp']},
+  psw:{zh:'槽型/反射式光電開關',en:'Photo Switch',
+    desc:{en:'Slot and reflective optical switches for position, edge and presence detection.',zh:'槽型與反射式光電開關，適用位置、邊緣與存在檢測。'},
+    feat:{en:['Slot and reflective sensing','Phototransistor output','Fast response around 15µs','Through-hole and SMD'],zh:['槽型與反射式感測','光電晶體輸出','響應約 15µs','插件與貼片']},
+    apps:{en:['Printers & copiers','Position detection','Motor speed sensing','Vending machines'],zh:['印表機與影印機','位置檢測','馬達轉速感測','自動販賣機']},
+    order:['package_spec','slot_width','slit_width','pin_pitch','peak_wavelength','wavelength','forward_voltage','load_voltage','load_current','collector_current','vceo','rise_time','fall_time','receiver_type','dark_current','operating_temp']}
+};
+
+/* ---------- 属性标签（中英） ---------- */
+const L = {
+  package_spec:['Package','封裝'],emission_color:['Colour','發光顏色'],wavelength:['Wavelength','波長'],
+  peak_wavelength:['Peak λ','峰值波長'],color_temp:['CCT','色溫'],lens_color:['Lens','透鏡顏色'],
+  base_type:['Base type','燈頭型式'],tape_type:['Orientation','貼裝方向'],viewing_angle:['Viewing angle','視角'],
+  operating_temp:['Operating temp.','工作溫度'],power:['Power','功率'],
+  forward_voltage:['Forward voltage','正向電壓'],forward_current:['Forward current','正向電流'],
+  luminous_intensity:['Luminous intensity','發光強度'],luminous_flux:['Luminous flux','光通量'],
+  fwhm:['FWHM','半波寬'],esd_rating:['ESD rating','靜電防護'],diode_config:['Configuration','二極管配置'],
+  uv_type:['UV type','紫外類型'],radiant_power:['Radiant power','輻射功率'],
+  reverse_current:['Reverse current','反向電流'],reverse_voltage:['Reverse voltage','反向電壓'],
+  power_dissipation:['Power dissipation','功耗'],radiant_intensity:['Radiant intensity','輻射強度'],
+  center_frequency:['Carrier frequency','載波頻率'],receive_distance:['Receiving distance','接收距離'],
+  working_current:['Working current','工作電流'],working_voltage:['Working voltage','工作電壓'],
+  receive_angle:['Receiving angle','接收角度'],spectral_range:['Spectral range','光譜範圍'],
+  dark_current:['Dark current','暗電流'],transistor_type:['Type','類型'],
+  vceo:['VCEO','集電極-發射極電壓'],vce_sat:['VCE(sat)','飽和壓降'],
+  collector_current:['Collector current','集電極電流'],device_type:['Device type','元件類型'],
+  polarity:['Polarity','極性'],vrwm:['VRWM','反向工作電壓'],vbr:['VBR','擊穿電壓'],
+  clamp_voltage:['VC (clamping)','箝位電壓'],ppp:['PPP','峰值脈衝功率'],ipp:['IPP','峰值脈衝電流'],
+  cj:['CJ (capacitance)','結電容'],channel_count:['Channels','通道數'],
+  protection_level:['Protection standard','防護標準'],char_size:['Digit height','字高'],
+  digit_count:['Digits','位數'],display_type:['Display type','顯示類型'],led_polarity:['Polarity','極性'],
+  slot_width:['Slot width','槽寬'],slit_width:['Slit width','縫寬'],pin_pitch:['Pin pitch','腳距'],
+  load_current:['Load current','負載電流'],load_voltage:['Load voltage','負載電壓'],
+  rise_time:['Rise time','上升時間'],fall_time:['Fall time','下降時間'],
+  receiver_type:['Receiver','接收端類型'],data_rate:['Data rate','數據速率'],
+  pwm_frequency:['PWM frequency','PWM 頻率'],static_current:['Quiescent current','靜態電流'],
+  propagation_delay:['Propagation delay','傳播延遲']
+};
+['r','g','b'].forEach(ch=>{
+  const up=ch.toUpperCase();
+  L['dominant_wavelength_'+ch]=['Dominant λ ('+up+')','主波長 ('+up+')'];
+  L['peak_wavelength_'+ch]=['Peak λ ('+up+')','峰值波長 ('+up+')'];
+  L['luminous_intensity_'+ch]=['Intensity ('+up+')','發光強度 ('+up+')'];
+  L['forward_voltage_'+ch]=['VF ('+up+')','正向電壓 ('+up+')'];
+  L['forward_current_'+ch]=['IF ('+up+')','正向電流 ('+up+')'];
+  L['power_'+ch]=['Power ('+up+')','功率 ('+up+')'];
+});
+const ORIGIN_ZH={'双向':'雙向','单向':'單向','单路':'單路','双路':'雙路','四路':'四路','共阴':'共陰','共阳':'共陽','7段':'7 段','光电三极管':'光電三極管','红色':'紅色','白色':'白色','黄色':'黃色','蓝色':'藍色','翠绿色':'翠綠色','黄绿色':'黃綠色','橙色':'橙色','绿色':'綠色','暖白色':'暖白色','冷白色':'冷白色','冰蓝色':'冰藍色','紫色':'紫色','粉色':'粉色','琥珀色':'琥珀色'};
+function zhFix(v){ return String(v).split(',').map(x=>ORIGIN_ZH[x.trim()]||x.trim()).join(' / '); }
+
+const ICON={
+  fb:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2.2 0-4 1.8-4 4v2H7v3h3v7h3v-7h3l1-3h-4v-2c0-.6.4-1 1-1z"/></svg>',
+  x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4l16 16M20 4L4 20"/></svg>',
+  in:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9v9M6 5.5v.01M11 18v-5a3 3 0 0 1 6 0v5"/></svg>',
+  wa:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z"/><path d="M8.8 8.6c0 3.4 2.4 5.8 5.8 5.8"/></svg>',
+  mail:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>',
+  link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7L11.5 7"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7L12.5 17"/></svg>'
+};
+
+let PRODUCTS=[], SPECS={}, MODEL='';
+
+function t(k){const d=I18N[getLang()]||I18N.en;return d[k]!==undefined?d[k]:I18N.en[k];}
+function lang(){return getLang();}
+function pick(o){ if(!o) return ''; const l=lang(); return o[l]!==undefined?o[l]:o.en; }
+
+function render(){
+  const P=PRODUCTS.find(x=>x.model===MODEL);
+  if(!P){
+    document.getElementById('pd-model').textContent=MODEL||'—';
+    document.getElementById('pd-desc').textContent=t('pd.notfound');
+    return;
+  }
+  const meta=CAT_META[P.cat]||CAT_META.led;
+  const attrs=SPECS[MODEL]||{};
+
+  document.title=MODEL+' — '+pick({en:meta.en,zh:meta.zh})+' | OKAYLIGHT';
+  document.getElementById('bc-model').textContent=MODEL;
+  const bc=document.getElementById('bc-cat');
+  bc.textContent=pick({en:meta.en,zh:meta.zh});
+  bc.href='products.html?cat='+P.cat;
+  document.getElementById('pd-cat').textContent=pick({en:meta.en,zh:meta.zh});
+  document.getElementById('pd-model').textContent=MODEL;
+  document.getElementById('pd-desc').textContent=pick(meta.desc);
+  document.getElementById('pd-pn').textContent=MODEL;
+  document.getElementById('pd-pkg').textContent=P.pkg||'—';
+  document.getElementById('pd-pkg2')&&(document.getElementById('pd-pkg2').textContent=P.pkg||'—');
+  document.getElementById('pd-pkg-img').textContent=P.pkg||'';
+
+  /* 规格表 */
+  const keys=[];
+  (meta.order||[]).forEach(k=>{ if(attrs[k]!==undefined) keys.push(k); });
+  Object.keys(attrs).forEach(k=>{ if(!keys.includes(k)) keys.push(k); });
+  if(!keys.length && P.spec){ keys.push('_spec','_detail'); }
+  const tb=document.getElementById('pd-spec-body');
+  tb.innerHTML=keys.map(k=>{
+    let lab,val;
+    if(k==='_spec'){lab=[t('pd.keyspec'),t('pd.keyspec')];val=P.spec;}
+    else if(k==='_detail'){lab=[t('pd.detail'),t('pd.detail')];val=P.detail;}
+    else { const l=L[k]||[k,k]; lab=l; val=attrs[k]; }
+    const label=lang()==='zh'?lab[1]:lab[0];
+    const v=lang()==='zh'?zhFix(val):val;
+    return '<tr><th>'+label+'</th><td>'+v+'</td></tr>';
+  }).join('');
+
+  /* 特性 / 应用 */
+  document.getElementById('pd-feat').innerHTML=(pick(meta.feat)||[]).map(f=>'<li>'+f+'</li>').join('');
+  document.getElementById('pd-apps').innerHTML=(pick(meta.apps)||[]).map(a=>'<span class="pd-tag">'+a+'</span>').join('');
+
+  /* 规格书 */
+  const ds=P.ds||'';
+  const nameEl=document.getElementById('pd-ds-name');
+  const view=document.getElementById('pd-view');
+  const dl=document.getElementById('pd-dl');
+  if(ds){
+    nameEl.textContent=(MODEL+'.pdf');
+    view.disabled=false; view.onclick=()=>window.open(ds,'_blank','noopener');
+    dl.href=ds; dl.classList.remove('pd-off'); dl.removeAttribute('aria-disabled');
+  }else{
+    nameEl.textContent=t('pd.nods');
+    view.disabled=true; view.onclick=null;
+    dl.removeAttribute('href');
+    dl.classList.add('pd-off'); dl.setAttribute('aria-disabled','true');
+  }
+
+  /* 分享 */
+  const url=location.href, title=MODEL+' · OKAYLIGHT';
+  const enc=encodeURIComponent;
+  const items=[
+    {k:'Facebook',ic:ICON.fb,h:'https://www.facebook.com/sharer/sharer.php?u='+enc(url)},
+    {k:'X',ic:ICON.x,h:'https://twitter.com/intent/tweet?url='+enc(url)+'&text='+enc(title)},
+    {k:'LinkedIn',ic:ICON.in,h:'https://www.linkedin.com/sharing/share-offsite/?url='+enc(url)},
+    {k:'WhatsApp',ic:ICON.wa,h:'https://wa.me/?text='+enc(title+' '+url)},
+    {k:t('pd.email'),ic:ICON.mail,h:'mailto:?subject='+enc(title)+'&body='+enc(url)},
+    {k:t('pd.copylink'),ic:ICON.link,h:'#copy'}
+  ];
+  document.getElementById('pd-share').innerHTML=items.map(i=>
+    '<a class="pd-sbtn" data-h="'+i.h+'" '+(i.h==='#copy'?'data-copy="1"':'target="_blank" rel="noopener"')+'>'+i.ic+'<span>'+i.k+'</span></a>'
+  ).join('');
+  document.querySelectorAll('.pd-sbtn').forEach(a=>{
+    a.addEventListener('click',e=>{
+      if(a.dataset.copy){
+        e.preventDefault();
+        navigator.clipboard.writeText(url).then(()=>{
+          const s=a.querySelector('span'); const old=s.textContent;
+          s.textContent=t('pd.copied'); setTimeout(()=>s.textContent=old,1600);
+        }).catch(()=>{});
+      }
+    });
+  });
+
+  /* 相关料号 */
+  const rel=PRODUCTS.filter(x=>x.cat===P.cat && x.model!==MODEL).map(x=>{
+    let sc=0;
+    if(x.pkg && x.pkg===P.pkg) sc+=3;
+    const a1=SPECS[x.model]||{};
+    if(attrs.wavelength && a1.wavelength===attrs.wavelength) sc+=2;
+    if(attrs.peak_wavelength && a1.peak_wavelength===attrs.peak_wavelength) sc+=2;
+    return {x,sc};
+  }).sort((a,b)=>b.sc-a.sc).slice(0,4);
+  document.getElementById('pd-rel').innerHTML=rel.map(({x})=>{
+    const a=SPECS[x.model]||{};
+    const line=(a.wavelength||a.peak_wavelength||a.vrwm||a.center_frequency||'')+' · '+(x.pkg||'');
+    return '<a class="pd-rel-card" href="product.html?model='+encodeURIComponent(x.model)+'">'
+      +'<div class="pd-rel-thumb"><img src="logo.png" alt="OKAYLIGHT"></div>'
+      +'<div><b>'+x.model+'</b><span>'+line+'</span></div></a>';
+  }).join('') || '<p class="pd-empty">'+t('pd.norel')+'</p>';
+}
+
+async function boot(){
+  MODEL=new URLSearchParams(location.search).get('model')||'';
+  try{ PRODUCTS=await (await fetch(OKAY.url('/api/products'))).json(); }catch(e){}
+  if(!Array.isArray(PRODUCTS)||!PRODUCTS.length){
+    try{ PRODUCTS=await (await fetch('data/products.json')).json(); }catch(e){ PRODUCTS=[]; }
+  }
+  try{ SPECS=await (await fetch('data/specs.json')).json(); }catch(e){ SPECS={}; }
+  render();
+  document.addEventListener('okaylang',render);
+}
+boot();
+</script>
+</body>
+</html>
