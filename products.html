@@ -151,7 +151,7 @@ function render(){
         :'<span class="ds-btn ds-dl is-off" aria-disabled="true" title="'+t('pr.ds.none')+'">')
       +icDl+t('pr.ds.download')+(has?'</a>':'</span>')
       +'</div>';
-    return '<tr><td class="model">'+r.model+'</td><td>'+r.pkg+'</td><td>'+r.spec+'</td><td>'+r.detail+'</td><td class="td-ds">'+ds+'</td></tr>';
+    return '<tr><td class="model"><a href="product.html?model='+encodeURIComponent(r.model)+'">'+r.model+'</a></td><td>'+r.pkg+'</td><td>'+r.spec+'</td><td>'+r.detail+'</td><td class="td-ds">'+ds+'</td></tr>';
   }).join('');
   document.getElementById('empty').style.display=rows.length?'none':'block';
   renderPager(rows.length,pages);
