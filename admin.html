@@ -48,6 +48,29 @@
   .pr-pager .btn{padding:5px 12px;font-size:12.5px}
   .pr-pager .btn.on{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
   .pr-pager .btn[disabled]{opacity:.35;cursor:not-allowed}
+  /* analytics */
+  .an-range{display:flex;gap:4px}
+  .an-range .btn.on{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+  .an-check{font-size:12.5px;color:#8a8272;display:inline-flex;align-items:center;gap:5px;cursor:pointer}
+  .an-kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#eee9dd;border:1px solid #eee9dd;margin:16px 0 22px}
+  .an-kpi-item{background:#fff;padding:16px 18px}
+  .an-kpi-item span{display:block;font-size:11.5px;letter-spacing:1.2px;text-transform:uppercase;color:#a49b8b}
+  .an-kpi-item b{display:block;font-size:26px;font-weight:600;margin-top:6px;color:#1a1a1a}
+  .an-chartwrap{border:1px solid #eee9dd;padding:16px 18px 8px;margin-bottom:22px}
+  .an-chart-head{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;margin-bottom:10px}
+  .an-chart-head span{font-size:11.5px;color:#a49b8b}
+  .an-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px 34px}
+  .an-block h4{font-size:12.5px;letter-spacing:1.2px;text-transform:uppercase;color:#8a6d2f;margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid #f0ece2}
+  .an-bar{margin-bottom:9px}
+  .an-bar-t{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;margin-bottom:4px}
+  .an-bar-t span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:78%}
+  .an-bar-t em{font-style:normal;color:#8a8272;white-space:nowrap}
+  .an-bar-t em i{font-style:normal;color:#b9ac96;margin-left:6px;font-size:11.5px}
+  .an-bar-b{height:6px;background:#f4f1ea}
+  .an-bar-b i{display:block;height:100%;background:#c9b184}
+  .an-empty{color:#b9ac96;font-size:12.5px;padding:6px 0}
+  .an-h4{font-size:13px;margin:24px 0 8px}
+  @media(max-width:760px){.an-kpi{grid-template-columns:repeat(2,1fr)}.an-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -74,6 +97,7 @@
       <button class="on" data-v="view-iq" onclick="showView(this)">詢價收件箱</button>
       <button data-v="view-pr" onclick="showView(this)">產品管理</button>
       <button data-v="view-nw" onclick="showView(this)">文章管理</button>
+      <button data-v="view-an" onclick="showView(this)">流量統計</button>
       <button data-v="view-ct" onclick="showView(this)">頁面裝修</button>
       <button data-v="view-st" onclick="showView(this)">設置</button>
       <span style="flex:1"></span>
@@ -155,6 +179,50 @@
       </div>
     </div>
 
+    <!-- 流量统计 -->
+    <div id="view-an" style="display:none" class="card">
+      <div class="tools">
+        <h3 style="margin:0">流量統計</h3>
+        <span style="flex:1"></span>
+        <div class="an-range" id="an-range">
+          <button class="btn btn-s on" data-d="1">今天</button>
+          <button class="btn btn-s" data-d="7">7 天</button>
+          <button class="btn btn-s" data-d="30">30 天</button>
+          <button class="btn btn-s" data-d="90">90 天</button>
+        </div>
+        <label class="an-check"><input type="checkbox" id="an-bots" onchange="loadAnalytics()"> 含機器人</label>
+        <button class="btn btn-s" onclick="exportAnalytics()">匯出 CSV</button>
+        <button class="btn btn-s" onclick="loadAnalytics()">刷新</button>
+      </div>
+      <p class="hint">來源＝訪客從哪裡來（搜尋／社群／引薦／直接輸入）；IP 歸屬地由 Cloudflare 邊緣節點提供；明細預設遮罩 IP 末段。</p>
+
+      <div class="an-kpi" id="an-kpi"></div>
+
+      <div class="an-chartwrap">
+        <div class="an-chart-head"><b>訪問趨勢</b><span>柱＝PV　折線＝UV</span></div>
+        <div id="an-chart"></div>
+      </div>
+
+      <div class="an-grid">
+        <div class="an-block"><h4>來源</h4><div id="an-src"></div></div>
+        <div class="an-block"><h4>國家／地區</h4><div id="an-ctry"></div></div>
+        <div class="an-block"><h4>城市</h4><div id="an-city"></div></div>
+        <div class="an-block"><h4>熱門頁面</h4><div id="an-pages"></div></div>
+        <div class="an-block"><h4>引薦網域</h4><div id="an-refs"></div></div>
+        <div class="an-block"><h4>裝置 / 瀏覽器</h4><div id="an-dev"></div><div id="an-br" style="margin-top:14px"></div></div>
+      </div>
+
+      <h4 class="an-h4">最近訪問明細</h4>
+      <label class="an-check" style="margin-bottom:8px"><input type="checkbox" id="an-fullip" onchange="renderRecent()"> 顯示完整 IP</label>
+      <div style="overflow-x:auto">
+        <table class="adm" id="an-recent">
+          <thead><tr><th>時間</th><th>IP</th><th>地區</th><th>來源</th><th>頁面</th><th>裝置</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="msg" id="an-msg"></div>
+    </div>
+
     <!-- 装修 -->
     <div id="view-ct" style="display:none" class="card">
       <div class="tools">
@@ -216,7 +284,8 @@ function enter(){
 }
 function showView(btn){
   document.querySelectorAll('.tabs2 button[data-v]').forEach(b=>b.classList.toggle('on',b===btn));
-  ['view-iq','view-pr','view-nw','view-ct','view-st'].forEach(v=>document.getElementById(v).style.display=(v===btn.dataset.v?'block':'none'));
+  ['view-iq','view-pr','view-nw','view-an','view-ct','view-st'].forEach(v=>document.getElementById(v).style.display=(v===btn.dataset.v?'block':'none'));
+  if(btn.dataset.v==='view-an' && !window.AN_LOADED) loadAnalytics();
 }
 if (TOKEN) enter();
 
@@ -346,6 +415,121 @@ async function saveProducts(){
     const j=await api('/api/products/save',{method:'POST',body:JSON.stringify({list:PRODUCTS})});
     msg('pr-msg',true,'已儲存 '+j.count+' 個型號，產品頁刷新即見。');
   }catch(e){ msg('pr-msg',false,'儲存失敗：'+e.message); }
+}
+
+/* ---------- analytics ---------- */
+var AN_DATA=null, AN_DAYS=1, AN_RECENT=[];
+document.getElementById('an-range').addEventListener('click',function(e){
+  var b=e.target.closest('button[data-d]'); if(!b)return;
+  AN_DAYS=+b.dataset.d;
+  document.querySelectorAll('#an-range button').forEach(function(x){x.classList.toggle('on',x===b);});
+  loadAnalytics();
+});
+async function loadAnalytics(){
+  var bots=document.getElementById('an-bots').checked?'1':'0';
+  try{
+    AN_DATA=await api('/api/admin/analytics?days='+AN_DAYS+'&bots='+bots);
+    window.AN_LOADED=true;
+    renderAnalytics();
+    msg('an-msg',true,'已更新 · 統計自 '+AN_DATA.since+' 起（UTC+8）');
+  }catch(e){ msg('an-msg',false,'載入失敗：'+e.message); }
+}
+function anMask(ip){
+  if(!ip) return '';
+  if(ip.indexOf(':')>-1){ var p=ip.split(':'); return p.slice(0,3).join(':')+':****'; }
+  var a=ip.split('.'); return a.length===4 ? a[0]+'.'+a[1]+'.'+a[2]+'.*' : ip;
+}
+function anTs(s){
+  try{ return new Date(s).toLocaleString('zh-TW',{timeZone:'Asia/Hong_Kong',hour12:false}); }catch(e){ return s||''; }
+}
+function renderAnalytics(){
+  var d=AN_DATA; if(!d) return;
+  var T=d.totals||{};
+  document.getElementById('an-kpi').innerHTML=[
+    ['瀏覽量 PV',T.pv||0],['訪客 UV',T.uv||0],['工作階段',T.sessions||0],['今日 PV',T.todayPv||0]
+  ].map(function(x){return '<div class="an-kpi-item"><span>'+x[0]+'</span><b>'+x[1]+'</b></div>';}).join('');
+
+  renderAnChart(d.trend||[]);
+  anBars('an-src',d.sources,true);
+  anBars('an-ctry',d.countries,false);
+  anBars('an-city',d.cities,false);
+  anBars('an-pages',d.pages,true);
+  anBars('an-refs',d.refs,false);
+  anBars('an-dev',d.devices,false);
+  anBars('an-br',d.browsers,false);
+
+  AN_RECENT=d.recent||[];
+  renderRecent();
+}
+function anBars(id,rows,withUv){
+  var box=document.getElementById(id); if(!box) return;
+  if(!rows||!rows.length){ box.innerHTML='<div class="an-empty">暫無數據</div>'; return; }
+  var max=1;
+  rows.forEach(function(r){ if((r.c||0)>max) max=r.c; });
+  box.innerHTML=rows.map(function(r){
+    var pct=Math.round((r.c||0)/max*100);
+    var label=String(r.k==null?r:r.k);
+    var uv=(withUv&&r.u!=null)?'<i>'+r.u+' UV</i>':'';
+    return '<div class="an-bar"><div class="an-bar-t"><span title="'+esc(label)+'">'+esc(label)+'</span>'
+      +'<em>'+r.c+uv+'</em></div><div class="an-bar-b"><i style="width:'+pct+'%"></i></div></div>';
+  }).join('');
+}
+function renderAnChart(tr){
+  var box=document.getElementById('an-chart');
+  if(!tr||!tr.length){ box.innerHTML='<div class="an-empty">暫無數據</div>'; return; }
+  var W=760,H=220,PAD=30;
+  var n=tr.length;
+  var maxV=1,maxU=1;
+  tr.forEach(function(x){ if(x.pv>maxV)maxV=x.pv; if(x.uv>maxU)maxU=x.uv; });
+  var step=(W-PAD*2)/Math.max(1,n);
+  var bw=Math.min(40,step*0.52);
+  var bars='',pts=[],dots='',labels='',grid='';
+  for(var gi=0;gi<4;gi++){
+    var gy=PAD+(H-PAD*2)*gi/3;
+    grid+='<line x1="'+PAD+'" y1="'+gy+'" x2="'+(W-PAD)+'" y2="'+gy+'" stroke="#f0ece2" stroke-width="1"/>';
+  }
+  tr.forEach(function(x,i){
+    var cx=PAD+step*i+step/2;
+    var h=(x.pv/maxV)*(H-PAD*2);
+    bars+='<rect x="'+(cx-bw/2)+'" y="'+(H-PAD-h)+'" width="'+bw+'" height="'+Math.max(1,h)+'" fill="#e8dfc9"/>';
+    var hy=(x.uv/maxU)*(H-PAD*2);
+    pts.push(cx+','+(H-PAD-hy));
+    dots+='<circle cx="'+cx+'" cy="'+(H-PAD-hy)+'" r="2.6" fill="#a8884a"/>';
+    if(n<=31) labels+='<text x="'+cx+'" y="'+(H-PAD+16)+'" font-size="10" fill="#a49b8b" text-anchor="middle">'+String(x.day).slice(5)+'</text>';
+  });
+  box.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" width="100%" style="height:auto;display:block">'
+    +grid+bars
+    +'<polyline fill="none" stroke="#a8884a" stroke-width="2" points="'+pts.join(' ')+'"/>'
+    +dots+labels
+    +'</svg>';
+}
+function renderRecent(){
+  var tb=document.querySelector('#an-recent tbody');
+  if(!tb) return;
+  var full=document.getElementById('an-fullip').checked;
+  if(!AN_RECENT.length){ tb.innerHTML='<tr><td colspan="6" class="an-empty">暫無數據</td></tr>'; return; }
+  tb.innerHTML=AN_RECENT.map(function(r){
+    var ip=full?r.ip:anMask(r.ip);
+    var geo=[r.country,r.city].filter(Boolean).join(' · ');
+    return '<tr><td style="white-space:nowrap">'+esc(anTs(r.ts))+'</td><td>'+esc(ip||'')+'</td>'
+      +'<td>'+esc(geo)+'</td><td>'+esc(r.source||'')+'</td>'
+      +'<td style="max-width:300px;word-break:break-all">'+esc(r.path||'')+'</td>'
+      +'<td>'+esc(r.device||'')+'</td></tr>';
+  }).join('');
+}
+function exportAnalytics(){
+  if(!AN_DATA){ msg('an-msg',false,'請先載入數據'); return; }
+  var rows=[['時間','IP','國家','城市','來源','來源頁','造訪頁面','裝置','瀏覽器']];
+  (AN_DATA.recent||[]).forEach(function(r){
+    rows.push([anTs(r.ts),r.ip||'',r.country||'',r.city||'',r.source||'',r.ref_host||'',r.path||'',r.device||'',r.browser||'']);
+  });
+  var csv='\ufeff'+rows.map(function(r){
+    return r.map(function(c){ return '"'+String(c).replace(/"/g,'""')+'"'; }).join(',');
+  }).join('\r\n');
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
+  a.download='okaylight-traffic-'+AN_DAYS+'d-'+new Date().toISOString().slice(0,10)+'.csv';
+  document.body.appendChild(a); a.click(); a.remove();
 }
 
 /* ---------- articles ---------- */
