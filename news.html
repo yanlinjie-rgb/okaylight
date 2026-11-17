@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>News — OKAYLIGHT</title>
-<meta name="description" content="Product launches, application notes and company updates from OKAYLIGHT.">
+<title>Optoelectronics Technical Articles &amp; Application Notes | OKAYLIGHT</title>
 <link rel="stylesheet" href="assets/style.css">
 <style>
   .news-list{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
@@ -22,7 +21,34 @@
   .article p{font-size:16px;line-height:1.85;color:#333;margin-bottom:18px}
   .backlink{display:inline-block;margin-bottom:26px;font-size:13px;letter-spacing:1px;color:var(--gold);border-bottom:1px solid var(--gold);padding-bottom:2px}
   @media(max-width:900px){.news-list{grid-template-columns:1fr}.article h1{font-size:30px}}
+
+  .article .body h2{font-size:22px;font-weight:600;margin:34px 0 12px;letter-spacing:-.2px;line-height:1.35}
+  .article .body h3{font-size:17px;font-weight:600;margin:26px 0 10px}
+  .article .body ul{margin:0 0 20px 20px}
+  .article .body li{font-size:15.5px;line-height:1.8;color:#333;margin:7px 0}
+  .article .body blockquote{border-left:3px solid var(--gold);background:var(--cream);padding:12px 18px;margin:0 0 20px;color:#4a4a4a;font-size:15px}
+  .article .body code{background:#f4f1ea;padding:1px 5px;border-radius:3px;font-size:13.5px}
+  .article .body .tbl{overflow-x:auto;margin:0 0 22px}
+  .article .body table{width:100%;border-collapse:collapse;font-size:14px}
+  .article .body th,.article .body td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+  .article .body th{background:var(--cream);font-weight:600}
 </style>
+<link rel="canonical" href="https://www.okaylightled.com/news.html">
+<meta name="description" content="Selection guides, application notes and troubleshooting articles on LEDs, UV curing, IR sensing, TVS protection and 7-segment displays — written for design engineers and buyers.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:site_name" content="OKAYLIGHT">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Optoelectronics Technical Articles &amp; Application Notes | OKAYLIGHT">
+<meta property="og:description" content="Selection guides, application notes and troubleshooting articles on LEDs, UV curing, IR sensing, TVS protection and 7-segment displays — written for design engineers and buyers.">
+<meta property="og:url" content="https://www.okaylightled.com/news.html">
+<meta property="og:image" content="https://www.okaylightled.com/logo.png">
+<meta property="og:locale" content="en">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Optoelectronics Technical Articles &amp; Application Notes | OKAYLIGHT">
+<meta name="twitter:description" content="Selection guides, application notes and troubleshooting articles on LEDs, UV curing, IR sensing, TVS protection and 7-segment displays — written for design engineers and buyers.">
+<meta name="twitter:image" content="https://www.okaylightled.com/logo.png">
+<link rel="preconnect" href="https://api.okaylightled.com" crossorigin>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","@id":"https://www.okaylightled.com/#org","name":"OKAYLIGHT LED TECHNOLOGY CO., LIMITED","alternateName":"OKAYLIGHT","url":"https://www.okaylightled.com/","logo":{"@type":"ImageObject","url":"https://www.okaylightled.com/logo.png"},"email":"sales@okaylightled.com","address":{"@type":"PostalAddress","streetAddress":"14/F, Belgian Bank Building, 721–725 Nathan Road, Mong Kok","addressLocality":"Kowloon","addressRegion":"Hong Kong","addressCountry":"HK"},"contactPoint":[{"@type":"ContactPoint","contactType":"sales","email":"sales@okaylightled.com","availableLanguage":["en","zh-Hant"]}],"knowsAbout":["LED","UV LED","infrared emitter","IR receiver","photodiode","phototransistor","RGB LED","TVS diode","ESD protection","7-segment display"]}</script>
 </head>
 <body>
 
@@ -98,57 +124,181 @@
 <script src="assets/config.js"></script>
 <script src="assets/i18n.js"></script>
 <script>
-(function(){
-  var ALL=[];
-  function t(k){var d=I18N[getLang()]||I18N.en;return d[k]!==undefined?d[k]:I18N.en[k];}
-  function pick(a,f){var v=a[f+'_'+getLang()];return (v&&v.trim())?v:(a[f+'_en']||a[f+'_zh']||'');}
-  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
-  function date(s){try{return new Date(s).toLocaleDateString(getLang()==='zh'?'zh-Hant':'en-GB',{year:'numeric',month:'short',day:'numeric'});}catch(e){return '';}}
+(function () {
+  var ALL = [], CUR = null;
+  var SITE = 'https://www.okaylightled.com/news.html';
+  var BASE_LD_ID = 'news-ld';
 
-  function renderList(){
-    var box=document.getElementById('view-list');
-    document.getElementById('view-detail').style.display='none';
-    box.style.display='block';
-    if(!ALL.length){
-      box.innerHTML='<p style="color:var(--muted)">'+esc(t('news.empty'))+'</p>';
+  function t(k) { var d = I18N[getLang()] || I18N.en; return d[k] !== undefined ? d[k] : I18N.en[k]; }
+  function pick(a, f) { var v = a[f + '_' + getLang()]; return (v && v.trim()) ? v : (a[f + '_en'] || a[f + '_zh'] || ''); }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function date(s) { try { return new Date(s).toLocaleDateString(getLang() === 'zh' ? 'zh-Hant' : 'en-GB', { year: 'numeric', month: 'short', day: 'numeric' }); } catch (e) { return ''; } }
+
+  /* ---- 极简 markdown：## ### 、列表、表格、引用、粗体、链接 ---- */
+  function inline(s) {
+    return esc(s)
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" rel="noopener">$1</a>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>');
+  }
+  function md(src) {
+    var lines = String(src || '').replace(/\r/g, '').split('\n');
+    var out = [], para = [], i = 0;
+    function flush() { if (para.length) { out.push('<p>' + inline(para.join(' ')) + '</p>'); para = []; } }
+    while (i < lines.length) {
+      var L = lines[i], m;
+      if (/^\s*$/.test(L)) { flush(); i++; continue; }
+      if ((m = L.match(/^\s*#{2,4}\s+(.*)$/))) {
+        flush();
+        var lv = L.trim().match(/^#+/)[0].length;
+        var tag = lv >= 3 ? 'h3' : 'h2';
+        out.push('<' + tag + '>' + inline(m[1]) + '</' + tag + '>');
+        i++; continue;
+      }
+      if (/^\s*[-*]\s+/.test(L)) {
+        flush(); var items = [];
+        while (i < lines.length && /^\s*[-*]\s+/.test(lines[i])) {
+          items.push('<li>' + inline(lines[i].replace(/^\s*[-*]\s+/, '')) + '</li>'); i++;
+        }
+        out.push('<ul>' + items.join('') + '</ul>'); continue;
+      }
+      if (/^\s*\|/.test(L) && i + 1 < lines.length && /^\s*\|?[\s:|-]+\|?\s*$/.test(lines[i + 1]) && lines[i + 1].indexOf('-') > -1) {
+        flush();
+        var head = L.replace(/^\s*\|/, '').replace(/\|\s*$/, '').split('|').map(function (x) { return x.trim(); });
+        i += 2; var rows = [];
+        while (i < lines.length && /^\s*\|/.test(lines[i])) {
+          rows.push(lines[i].replace(/^\s*\|/, '').replace(/\|\s*$/, '').split('|').map(function (x) { return x.trim(); })); i++;
+        }
+        out.push('<div class="tbl"><table><thead><tr>' + head.map(function (h) { return '<th>' + inline(h) + '</th>'; }).join('')
+          + '</tr></thead><tbody>' + rows.map(function (r) {
+            return '<tr>' + r.map(function (c) { return '<td>' + inline(c) + '</td>'; }).join('') + '</tr>';
+          }).join('') + '</tbody></table></div>');
+        continue;
+      }
+      if (/^\s*>\s?/.test(L)) { flush(); out.push('<blockquote>' + inline(L.replace(/^\s*>\s?/, '')) + '</blockquote>'); i++; continue; }
+      para.push(L.trim()); i++;
+    }
+    flush();
+    return out.join('');
+  }
+
+  function setMeta(key, val, prop) {
+    var sel = prop ? 'meta[property="' + key + '"]' : 'meta[name="' + key + '"]';
+    var el = document.querySelector(sel);
+    if (!el) { el = document.createElement('meta'); el.setAttribute(prop ? 'property' : 'name', key); document.head.appendChild(el); }
+    el.setAttribute('content', val || '');
+  }
+  function setCanonical(url) {
+    var l = document.querySelector('link[rel="canonical"]');
+    if (!l) { l = document.createElement('link'); l.rel = 'canonical'; document.head.appendChild(l); }
+    l.href = url;
+  }
+
+  function seoList() {
+    document.title = t('news.h1') + ' — OKAYLIGHT';
+    setMeta('description', t('news.p'));
+    setMeta('og:title', t('news.h1') + ' — OKAYLIGHT', true);
+    setMeta('og:description', t('news.p'), true);
+    setMeta('og:type', 'website', true);
+    setMeta('og:url', SITE, true);
+    setCanonical(SITE);
+    var s = document.getElementById('article-ld'); if (s) s.parentNode.removeChild(s);
+    var w = document.getElementById(BASE_LD_ID);
+    if (!w) {
+      w = document.createElement('script'); w.type = 'application/ld+json'; w.id = BASE_LD_ID; document.head.appendChild(w);
+    }
+    w.textContent = JSON.stringify({
+      '@context': 'https://schema.org', '@type': 'CollectionPage',
+      name: t('news.h1'), url: SITE,
+      isPartOf: { '@type': 'WebSite', name: 'OKAYLIGHT', url: 'https://www.okaylightled.com/' }
+    });
+  }
+
+  function seoDetail(a, slug, title) {
+    var url = SITE + '?slug=' + encodeURIComponent(slug);
+    var desc = (pick(a, 'excerpt') || '').slice(0, 300);
+    document.title = title + ' — OKAYLIGHT';
+    setMeta('description', desc);
+    setMeta('og:title', title, true);
+    setMeta('og:description', desc, true);
+    setMeta('og:type', 'article', true);
+    setMeta('og:url', url, true);
+    setMeta('og:image', 'https://www.okaylightled.com/logo.png', true);
+    setCanonical(url);
+    var w = document.getElementById(BASE_LD_ID); if (w) w.parentNode.removeChild(w);
+    var s = document.getElementById('article-ld');
+    if (!s) { s = document.createElement('script'); s.type = 'application/ld+json'; s.id = 'article-ld'; document.head.appendChild(s); }
+    s.textContent = JSON.stringify({
+      '@context': 'https://schema.org', '@type': 'Article',
+      headline: title, description: desc,
+      datePublished: a.ts, dateModified: a.updated || a.ts,
+      mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+      author: { '@type': 'Organization', name: 'OKAYLIGHT LED TECHNOLOGY CO., LIMITED' },
+      publisher: { '@type': 'Organization', name: 'OKAYLIGHT', logo: { '@type': 'ImageObject', url: 'https://www.okaylightled.com/logo.png' } },
+      inLanguage: getLang() === 'zh' ? 'zh-Hant' : 'en'
+    });
+  }
+
+  function renderList() {
+    var box = document.getElementById('view-list');
+    document.getElementById('view-detail').style.display = 'none';
+    box.style.display = 'block';
+    seoList();
+    if (!ALL.length) {
+      box.innerHTML = '<p style="color:var(--muted)">' + esc(t('news.empty')) + '</p>';
       return;
     }
-    box.innerHTML='<div class="news-list">'+ALL.map(function(a){
-      var title=pick(a,'title'), ex=pick(a,'excerpt');
-      var cover=a.cover?'<img class="cover" src="'+esc(a.cover)+'" alt="">':'';
-      return '<a class="ncard" href="?slug='+encodeURIComponent(a.slug||a.id)+'">'+cover
-        +'<div class="date">'+esc(date(a.ts))+'</div>'
-        +'<h3>'+esc(title)+'</h3>'
-        +'<p>'+esc(ex)+'</p>'
-        +'<span class="more">'+esc(t('news.read'))+' →</span></a>';
-    }).join('')+'</div>';
+    box.innerHTML = '<div class="news-list">' + ALL.map(function (a) {
+      var title = pick(a, 'title'), ex = pick(a, 'excerpt');
+      var cover = a.cover ? '<img class="cover" src="' + esc(a.cover) + '" alt="' + esc(title) + '" loading="lazy">' : '';
+      return '<a class="ncard" href="?slug=' + encodeURIComponent(a.slug || a.id) + '">' + cover
+        + '<div class="date">' + esc(date(a.ts)) + '</div>'
+        + '<h3>' + esc(title) + '</h3>'
+        + '<p>' + esc(ex) + '</p>'
+        + '<span class="more">' + esc(t('news.read')) + ' →</span></a>';
+    }).join('') + '</div>';
   }
 
-  function renderDetail(slug){
-    var a=ALL.filter(function(x){return (x.slug||x.id)===slug;})[0];
-    if(!a){ renderList(); return; }
-    var box=document.getElementById('view-list');
-    var det=document.getElementById('view-detail');
-    box.style.display='none'; det.style.display='block';
-    var body=pick(a,'body')||'';
-    var paras=body.split(/\n\s*\n/).map(function(p){return '<p>'+esc(p).replace(/\n/g,'<br>')+'</p>';}).join('');
-    det.innerHTML='<a class="backlink" href="news.html">'+esc(t('news.back'))+'</a>'
-      +'<h1 class="serif">'+esc(pick(a,'title'))+'</h1>'
-      +'<div class="meta">'+esc(date(a.ts))+(a.updated?' · '+esc(t('news.updated'))+' '+esc(date(a.updated)):'')+'</div>'
-      +(a.cover?'<img class="cover" src="'+esc(a.cover)+'" alt="">':'')
-      +paras;
-    document.title=pick(a,'title')+' — OKAYLIGHT';
+  function paintDetail(a, slug) {
+    CUR = a;
+    var box = document.getElementById('view-list');
+    var det = document.getElementById('view-detail');
+    box.style.display = 'none'; det.style.display = 'block';
+    var title = pick(a, 'title');
+    var body = pick(a, 'body') || '';
+    det.innerHTML = '<a class="backlink" href="news.html">' + esc(t('news.back')) + '</a>'
+      + '<h1 class="serif">' + esc(title) + '</h1>'
+      + '<div class="meta">' + esc(date(a.ts)) + (a.updated ? ' · ' + esc(t('news.updated')) + ' ' + esc(date(a.updated)) : '') + '</div>'
+      + '<div class="body">' + md(body) + '</div>';
+    seoDetail(a, slug, title);
   }
 
-  function paint(){
-    var slug=new URLSearchParams(location.search).get('slug');
-    if(slug) renderDetail(slug); else renderList();
+  function renderDetail(slug) {
+    var box = document.getElementById('view-list');
+    var det = document.getElementById('view-detail');
+    box.style.display = 'none'; det.style.display = 'block';
+    if (CUR && (CUR.slug || CUR.id) === slug) { paintDetail(CUR, slug); return; }
+    if (!det.innerHTML.trim() || det.innerHTML.indexOf('backlink') === -1) {
+      det.innerHTML = '<p style="color:var(--muted)">Loading…</p>';
+    }
+    fetch(OKAY.url('/api/articles?slug=' + encodeURIComponent(slug)))
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (a) {
+        if (!a || a.error) { det.innerHTML = '<a class="backlink" href="news.html">← ' + esc(t('news.back')) + '</a><p>' + esc(t('news.empty')) + '</p>'; return; }
+        paintDetail(a, slug);
+      })
+      .catch(function () { det.innerHTML = '<p style="color:var(--muted)">' + esc(t('news.empty')) + '</p>'; });
   }
 
-  fetch(OKAY.url('/api/articles')).then(function(r){return r.ok?r.json():null;}).then(function(j){
-    if(Array.isArray(j)) ALL=j;
+  function paint() {
+    var slug = new URLSearchParams(location.search).get('slug');
+    if (slug) renderDetail(slug); else renderList();
+  }
+
+  fetch(OKAY.url('/api/articles')).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+    if (Array.isArray(j)) ALL = j;
     paint();
-  }).catch(function(){ paint(); });
+  }).catch(function () { paint(); });
 
   document.addEventListener('okaylang', paint);
 })();
