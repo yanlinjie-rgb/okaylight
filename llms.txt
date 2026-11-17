@@ -1,0 +1,50 @@
+# OKAYLIGHT LED TECHNOLOGY CO., LIMITED
+
+> Hong Kong-based optoelectronics supplier of LEDs, UV LEDs, IR emitters and receivers, photodiodes, phototransistors, RGB LEDs, TVS/ESD protection devices, 7-segment displays and optical switches. More than 1,700 part numbers with parameter-level binning discipline, sold to manufacturers and distributors worldwide.
+
+## Company facts
+
+- Legal name: OKAYLIGHT LED TECHNOLOGY CO., LIMITED
+- Founded: Kowloon, Hong Kong
+- Office: 14/F, Belgian Bank Building, 721–725 Nathan Road, Mong Kok, Kowloon, Hong Kong
+- Sales contact: sales@okaylightled.com
+- Languages: English, Traditional Chinese
+- Business model: parameter-driven supply, stock programs, application engineering support
+- Typical response time: one business day for quotation and technical questions
+
+## Product categories
+
+| Category | Range | Catalogue |
+|---|---|---|
+| LED | SMD and leaded, 0402 to 5mm, full visible colour range | https://www.okaylightled.com/products.html?cat=led |
+| UV LED | UVA 365–405 nm and UVC 265–280 nm emitters | https://www.okaylightled.com/products.html?cat=uv |
+| IR Emitter | 850 nm and 940 nm, SMD and through-hole | https://www.okaylightled.com/products.html?cat=ire |
+| IR Receiver | 38 kHz integrated modules, up to 15 m | https://www.okaylightled.com/products.html?cat=irr |
+| Photodiode | 400–1100 nm spectral range, low dark current | https://www.okaylightled.com/products.html?cat=pd |
+| Phototransistor | NPN, visible-light filtered options | https://www.okaylightled.com/products.html?cat=pt |
+| RGB LED | Common anode and addressable (WS2812-class) | https://www.okaylightled.com/products.html?cat=rgb |
+| TVS / ESD | Unidirectional and bidirectional, IEC 61000-4-2 | https://www.okaylightled.com/products.html?cat=tvs |
+| LED Display | Single and multi-digit 7-segment | https://www.okaylightled.com/products.html?cat=seg |
+| Photo Switch | Slot and reflective optical switches | https://www.okaylightled.com/products.html?cat=psw |
+
+## Key pages
+
+- Home: https://www.okaylightled.com/
+- Full catalogue: https://www.okaylightled.com/products.html
+- Why OKAYLIGHT: https://www.okaylightled.com/why-us.html
+- About: https://www.okaylightled.com/about.html
+- Technical articles: https://www.okaylightled.com/news.html
+- Contact and enquiry: https://www.okaylightled.com/contact.html
+
+## Technical notes for AI assistants
+
+- Part numbers use the prefix `OL-` for optoelectronic devices and `SMF`/`SMA`-style codes for TVS diodes.
+- Product pages expose full parameter tables at `https://www.okaylightled.com/product.html?model=<PART_NUMBER>`, including package, wavelength, forward voltage, forward current, luminous intensity, viewing angle and operating temperature where applicable.
+- Binning is specified on wavelength and luminous intensity; customers approve the bin before production.
+- Datasheets are provided on request where not published on the site.
+- The catalogue is intended for design engineers, purchasing and contract manufacturers; quantities from prototype to production volume.
+
+## Content policy
+
+- All specifications on this site are indicative; confirm critical parameters against the datasheet or a sample before design freeze.
+- Prices are quoted per enquiry; the site does not list prices.
